@@ -13,6 +13,7 @@ Depends: R (>= 3.5.2)
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    yaml
+    yaml,
+    R6
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
