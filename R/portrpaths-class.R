@@ -3,13 +3,18 @@
 #'
 #'
 #' R6 Reference class encapsulating all portrpaths behaviour and data
+#'
 #'     The current implementation will provide access to, essentially, a flat
 #'     Directory full of datafiles.
+#'
 #'     Local configuration, as well as providing an absolute root reference,
 #'     MIGHT also allow overriding of global options (To be decided)
 #'
+#'
 #' @name PortrPath-class
 #' @aliases PortrPath
+NULL
+
 #' @export
 PortrPath <-
 R6::R6Class("PortrPath",
@@ -18,14 +23,7 @@ public = list(
 
   # Methods ===================================================================
   initialize = function(local_config_path, shared_config_path){
-    private$local_config_path <- local_config_path
-    private$shared_config_path <- shared_config_path
-
-    private$read_config()
-
-    private$build_whole_paths()
-
-    invisible(self)
+    stop("Interface Stub")
   },
 
   print = function(){
@@ -35,7 +33,7 @@ public = list(
     print(glue::glue("Parents: {private$d_parents}"))
   },
   get_file_paths = function(){
-    return(private$f_paths)
+   stop("Interface Stub")
   }
 
 ),
@@ -99,3 +97,52 @@ private = list(
     return(out)
   }
 ))
+
+# Actual Implementations ======================================================
+
+#' Inititalize A PortrPath object
+#'
+#' Initializes new PortrPath object from configuration files given as arguments
+#'
+#' @name PortrPath$new
+#' @aliases PortrPath-class-new
+#' @param local_config_path The location of the configuration file that define
+#'     local configuration parameters
+#' @param shared_config_path The location of the configuration file shared
+#'     across the project
+#' @section TODO:
+#'     Document the input format
+NULL
+
+PortrPath$set(
+  "public", "initialize",
+  function(local_config_path, shared_config_path){
+    private$local_config_path <- local_config_path
+    private$shared_config_path <- shared_config_path
+
+    private$read_config()
+
+    private$build_whole_paths()
+
+    invisible(self)
+  },
+  overwrite = TRUE
+  )
+
+#' Get a named list of file paths
+#'
+#' For files specified in the shared config, get a named list of their local
+#'     paths
+#'
+#' @name PortrPath$get_file_paths
+#' @aliases PortrPath-class-get_file_paths
+#' @return A named list of file paths
+NULL
+
+PortrPath$set(
+  "public", "get_file_paths",
+  function(){
+    return(private$f_paths)
+  },
+  overwrite = TRUE
+)
