@@ -60,8 +60,7 @@ private = list(
     shared <- yaml::read_yaml(private$shared_config_path)
     local <- yaml::read_yaml(private$local_config_path)
 
-    private$d_root <- local$d_root %>%
-      private$handle_local_root()
+    private$d_root <- private$handle_local_root(local$d_root)
 
     private$d_parents <- shared[["parent_components"]]
     private$f_names   <- shared[["file_names"]]

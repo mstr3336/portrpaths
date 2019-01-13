@@ -1,1 +1,5 @@
-# eMR-Pathfinder
+# PortrPaths
+
+## How to use:
+
+See Articles/Tutorial

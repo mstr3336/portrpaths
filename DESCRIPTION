@@ -9,15 +9,20 @@ Description: For configuration of portable path directories for eMR data
     As eMR data cannot be removed from secure storage, and cannot 
     be checked into local/relatively navigable directories
 License: GPL-3
-Depends: R (>= 3.5.2)
+Depends: R (>= 3.5.1)
 Encoding: UTF-8
 LazyData: true
 Imports: 
     yaml,
     R6,
-    here
+    here,
+    magrittr,
+    glue
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
     testthat,
-    pkgdown
+    pkgdown,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
