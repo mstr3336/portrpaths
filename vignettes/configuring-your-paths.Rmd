@@ -1,0 +1,109 @@
+---
+title: "Using Portable Paths"
+author: "Matthew Strasiotto"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+# A quick intro
+
+This implementation is supposed to provide portability, for people who want 
+automating the processing of data that, for ethics reasons, must remain on
+a secure network share. 
+
+The typical reliable solution for programmers needing access to this data would
+be to include it in their project repository, or by some other means so they 
+could use relative path configuration to access their files. 
+
+This solution makes use of two persistent configuration files so that R can 
+find and load files: 
+A `local.yaml` file, designed to never be checked into VCS, allowing a one-time
+set-up to find the root of the data directory.
+And a `shared.yaml` for project wide configuration of the contents within that
+directory.
+
+Let's load our library before we get started
+
+```{r}
+library(portrpaths)
+```
+
+
+# The configration files
+
+Let's have a quick look at what our configuration files might look like
+```{r}
+config_dir <- system.file("test_data", "t1", package = "portrpaths")
+
+local_config <- file.path(config_dir, "local.yaml")
+shared_config <- file.path(config_dir, "shared.yaml")
+```
+
+## The shared config
+
+Let's diplay the shared config
+```{r}
+for (ln in readLines(shared_config)) print(ln)
+```
+
+## The local config
+
+What about the local config?
+
+This is the file that designates just where to look for the root of
+the data-share. The rest is done by the first file we saw.
+
+This should never be checked into VCS.
+```{r}
+for (ln in readLines(local_config)) print(ln)
+```
+
+On looking at that, we notice you may notice that this particular example
+designates `d_root: .PROJECT_ROOT`. 
+
+`.PROJECT_ROOT` is a (the only) special case for designating this root, and 
+will set the root to be the root of the current RStudio project and/or git 
+repo
+
+Usually, you should specify an absolute path like 
+ - `/Volumes/RDS-01/PRJ-STEMI/` (OSX)
+ 
+# Using this config
+
+Now it's time to use this configuration.
+
+Let's load it up, and see what it looks like
+```{r}
+paths <- PortrPath$new(local_config_path = local_config,
+                       shared_config_path = shared_config)
+
+print(paths)
+```
+
+## Accessing your paths
+
+Accessing your paths is very simple
+```{r}
+file_list <- paths$get_file_paths()
+print(file_list)
+```
+
+To use a single designated path-string, just do
+```{r}
+encounters <- file_list$encs
+print(encounters)
+```
+
