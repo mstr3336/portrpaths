@@ -87,7 +87,7 @@
 <a href="#a-quick-intro" class="anchor"></a>A quick intro</h1>
 <p>This implementation is supposed to provide portability, for people who want automating the processing of data that, for ethics reasons, must remain on a secure network share.</p>
 <p>The typical reliable solution for programmers needing access to this data would be to include it in their project repository, or by some other means so they could use relative path configuration to access their files.</p>
-<p>This solution makes use of two persistent configuration files so that R can find and load files: A <code>local.yaml</code> file, designed to never be checked into VCS, allowing a one-time set-up to find the root of the data directory. And a <code>shared.yaml</code> for project wide configuration of the contents within that directory.</p>
+<p>This solution makes use of two persistent configuration files so that R can find and load files: A <code>local.yaml</code> file, designed to <em>never be checked into VCS</em>, allowing a one-time set-up to find the root of the data directory. And a <code>shared.yaml</code> for project wide configuration of the contents within that directory.</p>
 <p>Let’s load our library before we get started</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(portrpaths)</code></pre></div>
 </div>
@@ -125,7 +125,7 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <a href="#the-local-config" class="anchor"></a>The local config</h2>
 <p>What about the local config?</p>
 <p>This is the file that designates just where to look for the root of the data-share. The rest is done by the first file we saw.</p>
-<p>This should never be checked into VCS.</p>
+<p><em>This should never be checked into VCS.</em></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readLines">readLines</a></span>(local_config)) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(ln)
 <span class="co">#&gt; [1] "d_root: .PROJECT_ROOT"</span></code></pre></div>
 <p>On looking at that, we notice you may notice that this particular example designates <code>d_root: .PROJECT_ROOT</code>.</p>

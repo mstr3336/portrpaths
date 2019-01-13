@@ -30,8 +30,8 @@ could use relative path configuration to access their files.
 
 This solution makes use of two persistent configuration files so that R can 
 find and load files: 
-A `local.yaml` file, designed to never be checked into VCS, allowing a one-time
-set-up to find the root of the data directory.
+A `local.yaml` file, designed to *never be checked into VCS*, allowing a 
+one-time set-up to find the root of the data directory.
 And a `shared.yaml` for project wide configuration of the contents within that
 directory.
 
@@ -66,7 +66,7 @@ What about the local config?
 This is the file that designates just where to look for the root of
 the data-share. The rest is done by the first file we saw.
 
-This should never be checked into VCS.
+*This should never be checked into VCS.*
 ```{r}
 for (ln in readLines(local_config)) print(ln)
 ```
