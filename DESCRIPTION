@@ -1,7 +1,7 @@
 Package: portrpaths
 Type: Package
 Title: Making Data Dependencies More Portable
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: person("Matthew", "Strasiotto", 
                   email = "matthew.strasiotto@gmail.com",
                   role = c("aut", "cre"))
@@ -15,8 +15,9 @@ LazyData: true
 Imports: 
     yaml,
     R6,
-    purrr
+    here
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
-    testthat
+    testthat,
+    pkgdown
