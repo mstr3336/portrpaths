@@ -1,8 +1,15 @@
 parent_components:
-  - R_Dataframes
-  - entire-extract
-  - 09-10-2018
+  - inst
+  - test_data
+  - t1
+  - data
+
 file_names:
   encs: cardi_encs
   diag: cardi_diags
   form: cardi_forms
+
+file_extensions:
+  encs: txt
+  diag: txt
+  form: made_up_ext

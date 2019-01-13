@@ -8,10 +8,11 @@
 #'     Local configuration, as well as providing an absolute root reference,
 #'     MIGHT also allow overriding of global options (To be decided)
 #'
-#' @name portrpaths-class
+#' @name PortrPath-class
+#' @aliases PortrPath
 #' @export
-PortrPaths <-
-R6::R6Class("PortrPaths",
+PortrPath <-
+R6::R6Class("PortrPath",
 public = list(
   # Variables =================================================================
 
@@ -32,7 +33,11 @@ public = list(
     print(glue::glue("Name: {names(private$f_names)} ",
                      "Path: {private$f_paths}"))
     print(glue::glue("Parents: {private$d_parents}"))
+  },
+  get_file_paths = function(){
+    return(private$f_paths)
   }
+
 ),
 private = list(
   # Variables =================================================================
@@ -50,35 +55,47 @@ private = list(
   # List of filenames in final directory
   f_names = NULL,
   f_paths = NULL,
+  f_exts = NULL,
 
   # Methods ===================================================================
   read_config = function() {
     shared <- yaml::read_yaml(private$shared_config_path)
     local <- yaml::read_yaml(private$local_config_path)
 
-    private$d_root <- local$d_root
-    print(local)
-    print(shared)
+    private$d_root <- local$d_root %>%
+      private$handle_local_root()
 
     private$d_parents <- shared[["parent_components"]]
     private$f_names   <- shared[["file_names"]]
-
-    print(private$f_names)
-    print(class(private$f_names))
+    private$f_exts    <- shared[["file_extensions"]]
 
     invisible(self)
   },
 
 
   build_whole_paths = function(){
-    dir <- file.path(private$d_root, private$d_parents)
+    dir <- glue::glue_collapse(c(private$d_root, private$d_parents),
+                               sep = .Platform$file.sep)
+
 
     # Delete any mappings in the current f_paths list
     private$f_paths <- private$f_names
     # Build named list from
     private$f_paths[names(private$f_names)] <-
-      glue::glue("{dir}/{private$f_names}.rds")
+      glue::glue("{dir}/{private$f_names}.{private$f_exts}")
 
     invisible(self)
+  },
+
+  # If the keyword .PROJECT_ROOT is used for the local root mapping
+  # Instead set it to the local root
+  handle_local_root = function(root_in){
+    out <-
+      switch(root_in,
+             # Default
+             root_in,
+             .PROJECT_ROOT = here::here()
+             )
+    return(out)
   }
 ))
