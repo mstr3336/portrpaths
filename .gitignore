@@ -29,3 +29,5 @@ rsconnect/
 # Machine specific path configs
 local_paths.yaml
 .Rproj.user
+
+.DS_Store

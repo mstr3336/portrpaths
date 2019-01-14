@@ -2,4 +2,4 @@
 
 ## How to use:
 
-See Articles/Tutorial
+See [Using Portable Paths](https://mstr3336.github.io/portrpaths/articles/configuring-your-paths.html)
