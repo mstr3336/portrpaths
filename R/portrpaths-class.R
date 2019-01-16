@@ -31,11 +31,18 @@ public = list(
     print(glue::glue("Name: {names(private$f_names)} ",
                      "Path: {private$f_paths}"))
     print(glue::glue("Parents: {private$d_parents}"))
+    print(glue::glue("Profiles:"))
+    print(glue::glue("    {names(p)}: {p}",
+                     p = private$profiles))
   },
-  get_file_paths = function(){
-   stop("Interface Stub")
-  }
-
+  get_file_paths = function() stop("Interface Stub"),
+  add_profile = function(name, path) stop("Interface Stub")
+),
+# ACTIVE ======================================================================
+active = list(
+  profile = function(value) stop("Interface Stub"),
+  root = function(value) stop("Interface Stub"),
+  files = function() stop("Interface Stub")
 ),
 private = list(
   # Variables =================================================================
@@ -44,6 +51,8 @@ private = list(
 
   local_config_path = NULL,
   shared_config_path = NULL,
+  local = NULL,
+  shared = NULL,
   # Local root, set by some local config file
   d_root = NULL,
   # Information to track shared properties, on project scope
@@ -54,18 +63,24 @@ private = list(
   f_names = NULL,
   f_paths = NULL,
   f_exts = NULL,
-
+  profiles = NULL,
   # Methods ===================================================================
   read_config = function() {
-    shared <- yaml::read_yaml(private$shared_config_path)
-    local <- yaml::read_yaml(private$local_config_path)
+    private$shared <- yaml::read_yaml(private$shared_config_path)
+    private$local <- yaml::read_yaml(private$local_config_path)
 
-    private$d_root <- private$handle_local_root(local$d_root)
+    private$d_root <- private$handle_local_root(private$local$d_root)
 
-    private$d_parents <- shared[["parent_components"]]
-    private$f_names   <- shared[["file_names"]]
-    private$f_exts    <- shared[["file_extensions"]]
+    private$d_parents <- private$shared[["parent_components"]]
+    private$f_names   <- private$shared[["file_names"]]
+    private$f_exts    <- private$shared[["file_extensions"]]
 
+    if ("profiles" %in% names(private$local)) {
+      private$profiles <- private$local$profiles
+    } else {
+      private$local$profiles <- list(default = private$local$d_root)
+      yaml::write_yaml(private$local, private$local_config_path)
+    }
     invisible(self)
   },
 
@@ -128,12 +143,11 @@ PortrPath$set(
   overwrite = TRUE
   )
 
-#' Get a named list of file paths
-#'
-#' For files specified in the shared config, get a named list of their local
-#'     paths
-#'
+
+#' @describeIn PortrPath$files
+#' @section DEPRECATED
 #' @name PortrPath$get_file_paths
+#' @rdname PortrPath$files
 #' @aliases PortrPath-class-get_file_paths
 #' @return A named list of file paths
 NULL
@@ -141,7 +155,93 @@ NULL
 PortrPath$set(
   "public", "get_file_paths",
   function(){
+    warn("Deprecated, use $files")
+    return(self$files)
+  },
+  overwrite = TRUE
+)
+
+#' Set the active profile
+#'
+#' For set the current profile according to its id
+#'    Also write the d_root to file
+#'
+#' @param value the identifying string for the profile
+#' @name PortrPath$profile
+#' @return current profile if not being set
+NULL
+
+#' Get a named list of file paths
+#'
+#' For files specified in the shared config, get a named list of their local
+#'     paths
+#' @name files
+#' @param none
+#' @name PortrPath$files
+#' @param value unused
+#' @return a list of files belonging to the object
+NULL
+PortrPath$set(
+  "active", "files",
+  function(value) {
+    if (! missing(value)) stop("Accessor only!")
     return(private$f_paths)
+  },
+  overwrite = TRUE
+)
+
+
+
+PortrPath$set(
+  "active", "profile",
+  function(value) {
+    if (missing(value)) return(private$profiles)
+    if (! value %in% names(private$profiles)) stop(glue::glue("{value} is not a valid profile"))
+
+    print(glue::glue("Setting profile to {value}"))
+    self$root <- private$profiles[[value]]
+
+  },
+  overwrite = TRUE
+)
+
+#' Add a profile to the list of profiles
+#'
+#' Profiles allow the user to easily switch between some favourite paths
+#' @param name the friendly name to refer to the profile
+#' @param path the path the profile should refer to
+#' @return None
+#' @name PortrPath$add_profile
+NULL
+PortrPath$set(
+  "public", "add_profile",
+  function(name, path) {
+    private$profiles[[name]] <- path
+    private$local$profiles <- private$profiles
+    yaml::write_yaml(private$local, private$local_config_path)
+  },
+  overwrite = TRUE
+)
+
+#' Get or set the current root
+#'
+#' Sets the current root if assigned a value, or gets it if not
+#'
+#' @name PortrPath$root
+#' @param value the value of the root to be used. Either an absolute path
+#'     or ".PROJECT_ROOT"
+#' @return the current root, or nothing if setting
+NULL
+
+PortrPath$set(
+  "active", "root",
+  function(value){
+    if (missing(value)) return(private$d_root)
+    private$local$d_root <- value
+    yaml::write_yaml(private$local, private$local_config_path)
+    private$d_root <- private$handle_local_root(value)
+    print(glue::glue("Setting root to {private$d_root}"))
+    private$build_whole_paths()
   },
   overwrite = TRUE
 )

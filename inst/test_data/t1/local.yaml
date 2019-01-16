@@ -1,1 +1,4 @@
 d_root: .PROJECT_ROOT
+profiles:
+  default: .PROJECT_ROOT
+  windows: test
