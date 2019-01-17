@@ -67,7 +67,7 @@ private = list(
   # Methods ===================================================================
   read_config = function() {
     private$shared <- yaml::read_yaml(private$shared_config_path)
-    private$local <- yaml::read_yaml(private$local_config_path)
+    private$handle_local(private$local_config_path)
 
     private$d_root <- private$handle_local_root(private$local$d_root)
 
