@@ -1,0 +1,12 @@
+parent_components:
+- test_data
+- t2
+- data
+file_names:
+  encs: cardi_encs
+  diag: cardi_diags
+  form: cardi_forms
+file_extensions:
+  encs: txt
+  diag: txt
+  form: made_up_ext
