@@ -80,12 +80,15 @@ private = list(
 
   handle_local = function(local_path){
     if (!file.exists(local_path)) {
-      root <- readline(prompt = glue::glue("No config found at {local_path}, ",
-                                           "Enter data root: "))
-
-
-      private$local <- list(d_root = root)
+      print(glue::glue("No config found at {local_path}"))
+      private$local <- list()
     }
+    if (! "d_root" %in% names(private$local)){
+      root <- readline(prompt = "Enter data root: ")
+      private$local$d_root <- root
+    }
+
+
     if ("profiles" %in% names(private$local)) {
       private$profiles <- private$local$profiles
     } else {
