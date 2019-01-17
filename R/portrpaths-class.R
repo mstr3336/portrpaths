@@ -75,13 +75,22 @@ private = list(
     private$f_names   <- private$shared[["file_names"]]
     private$f_exts    <- private$shared[["file_extensions"]]
 
+    invisible(self)
+  },
+
+  handle_local = function(local_path){
+    if (!file.exists(local_path)) {
+      root <- readline(prompt = glue::glue("No config found at {local_path}, ",
+                                           "Enter data root: "))
+
+      private$local <- yaml::as.yaml(list(d_root = root))
+    }
     if ("profiles" %in% names(private$local)) {
       private$profiles <- private$local$profiles
     } else {
       private$local$profiles <- list(default = private$local$d_root)
-      yaml::write_yaml(private$local, private$local_config_path)
     }
-    invisible(self)
+    yaml::write_yaml(private$local, locla_path)
   },
 
 
@@ -114,6 +123,8 @@ private = list(
 
 # Actual Implementations ======================================================
 
+# Initialize ===========
+
 #' Inititalize A PortrPath object
 #'
 #' Initializes new PortrPath object from configuration files given as arguments
@@ -143,6 +154,7 @@ PortrPath$set(
   overwrite = TRUE
   )
 
+# get_file_paths ===========
 
 #' @describeIn PortrPath$files
 #' @section DEPRECATED
@@ -161,15 +173,6 @@ PortrPath$set(
   overwrite = TRUE
 )
 
-#' Set the active profile
-#'
-#' For set the current profile according to its id
-#'    Also write the d_root to file
-#'
-#' @param value the identifying string for the profile
-#' @name PortrPath$profile
-#' @return current profile if not being set
-NULL
 
 #' Get a named list of file paths
 #'
@@ -190,7 +193,17 @@ PortrPath$set(
   overwrite = TRUE
 )
 
+# Active Profile ========
 
+#' Set the active profile
+#'
+#' For set the current profile according to its id
+#'    Also write the d_root to file
+#'
+#' @param value the identifying string for the profile
+#' @name PortrPath$profile
+#' @return current profile if not being set
+NULL
 
 PortrPath$set(
   "active", "profile",
@@ -204,6 +217,8 @@ PortrPath$set(
   },
   overwrite = TRUE
 )
+
+# Add Profile ===============
 
 #' Add a profile to the list of profiles
 #'
@@ -222,6 +237,8 @@ PortrPath$set(
   },
   overwrite = TRUE
 )
+
+# Access root ========================
 
 #' Get or set the current root
 #'
