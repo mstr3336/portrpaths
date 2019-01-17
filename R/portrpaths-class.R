@@ -82,8 +82,15 @@ private = list(
     if (!file.exists(local_path)) {
       print(glue::glue("No config found at {local_path}"))
       private$local <- list()
+    } else {
+      private$local <- yaml::read_yaml(local_path)
     }
+
     if (! "d_root" %in% names(private$local)){
+      private$log$warn("Unable to find d_root in %s",
+                   as.character(names(private$local)))
+
+
       root <- readline(prompt = "Enter data root: ")
       private$local$d_root <- root
     }
@@ -173,7 +180,7 @@ NULL
 PortrPath$set(
   "public", "get_file_paths",
   function(){
-    warn("Deprecated, use $files")
+    private$log$warn("Deprecated, use $files")
     return(self$files)
   },
   overwrite = TRUE

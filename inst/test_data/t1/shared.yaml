@@ -1,14 +1,12 @@
 parent_components:
-  - inst
-  - test_data
-  - t1
-  - data
-
+- inst
+- test_data
+- t1
+- data
 file_names:
   encs: cardi_encs
   diag: cardi_diags
   form: cardi_forms
-
 file_extensions:
   encs: txt
   diag: txt
