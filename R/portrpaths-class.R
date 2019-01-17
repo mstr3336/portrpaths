@@ -83,14 +83,15 @@ private = list(
       root <- readline(prompt = glue::glue("No config found at {local_path}, ",
                                            "Enter data root: "))
 
-      private$local <- yaml::as.yaml(list(d_root = root))
+
+      private$local <- list(d_root = root)
     }
     if ("profiles" %in% names(private$local)) {
       private$profiles <- private$local$profiles
     } else {
       private$local$profiles <- list(default = private$local$d_root)
     }
-    yaml::write_yaml(private$local, locla_path)
+    yaml::write_yaml(private$local, local_path)
   },
 
 
