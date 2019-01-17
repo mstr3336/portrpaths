@@ -59,3 +59,11 @@ setup_t2 <- function(local_path, shared_path){
   yaml::write_yaml(local, local_path)
 
 }
+
+expect_files <- function(portrpath){
+  paths <- portrpath$files
+  for (nm in names(paths)){
+    f <- paths[[nm]]
+    expect_true(file.exists(f), info = glue::glue("Can {nm}: {f} be found?"), label = nm)
+  }
+}

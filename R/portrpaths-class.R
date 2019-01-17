@@ -86,15 +86,13 @@ private = list(
       private$local <- yaml::read_yaml(local_path)
     }
 
-    if (! "d_root" %in% names(private$local)){
+    if (! ("d_root" %in% names(private$local))){
       private$log$warn("Unable to find d_root in %s",
                    as.character(names(private$local)))
 
-
       root <- readline(prompt = "Enter data root: ")
-      private$local$d_root <- root
+      self$root <- root
     }
-
 
     if ("profiles" %in% names(private$local)) {
       private$profiles <- private$local$profiles
