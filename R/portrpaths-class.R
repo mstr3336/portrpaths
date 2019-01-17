@@ -46,7 +46,7 @@ active = list(
 ),
 private = list(
   # Variables =================================================================
-
+  log = NULL,
   # The locations of the yaml configuration files
 
   local_config_path = NULL,
@@ -112,6 +112,7 @@ private = list(
   # If the keyword .PROJECT_ROOT is used for the local root mapping
   # Instead set it to the local root
   handle_local_root = function(root_in){
+    private$log$info("Root in: %s", root_in)
     out <-
       switch(root_in,
              # Default
@@ -143,6 +144,7 @@ NULL
 PortrPath$set(
   "public", "initialize",
   function(local_config_path, shared_config_path){
+    private$log <- logging::getLogger(name = "PortrPath")
     private$local_config_path <- local_config_path
     private$shared_config_path <- shared_config_path
 
