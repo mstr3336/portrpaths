@@ -1,0 +1,5 @@
+d_root: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t2
+profiles:
+  default: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1
+  t1: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1
+  t2: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t2
