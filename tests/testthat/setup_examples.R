@@ -1,5 +1,9 @@
 logging::loginfo("Running setup!")
-logging::setLevel("WARN", container = "PortrPath")
+main_log <- logging::getLogger(name = "PortrPath")
+test_log <- logging::getLogger(name = "testing")
+test_log$setLevel("DEBUG")
+main_log$setLevel("DEBUG")
+
 
 setup_t1 <- function(local_path, shared_path){
   local <- setup_t1_local()
@@ -66,4 +70,37 @@ expect_files <- function(portrpath){
     f <- paths[[nm]]
     expect_true(file.exists(f), info = glue::glue("Can {nm}: {f} be found?"), label = nm)
   }
+}
+
+setup_profile_local <- function(){
+  base_root <- system.file("test_data", package = "portrpaths")
+  alts <- c("t1", "t2")
+  roots <- list()
+  roots[alts] <- glue::glue("{base_root}{sep}{alts}", sep = .Platform$file.sep)
+  test_log$info("Roots: {roots}")
+  local <- list(
+    d_root = roots[["t1"]],
+    profiles = list(
+      default = roots[["t1"]],
+      t1 = roots[["t1"]],
+      t2 = roots[["t2"]]
+    )
+  )
+  return(local)
+}
+
+setup_profile_shared <- function(){
+  out <- setup_t1_shared()
+  out$parent_components <- c('data')
+  return(out)
+}
+
+setup_profile_test <- function(local_path, shared_path){
+  shared <- setup_profile_shared()
+  local <- setup_profile_local()
+
+  #print(glue::glue("{c('shared', 'local')}: {c(shared_path, local_path)}"))
+
+  yaml::write_yaml(shared, shared_path)
+  yaml::write_yaml(local, local_path)
 }
