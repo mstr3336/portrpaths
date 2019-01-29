@@ -13,3 +13,10 @@ current profile if not being set
 For set the current profile according to its id
 Also write the d_root to file
 }
+\seealso{
+Other PortrPath: \code{\link{PortrPath$add_profile}},
+  \code{\link{PortrPath$get_file_paths}},
+  \code{\link{PortrPath$new}},
+  \code{\link{PortrPath$root}}, \code{\link{PortrPath}}
+}
+\concept{PortrPath}

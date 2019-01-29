@@ -3,11 +3,30 @@
 \name{PortrPath$get_file_paths}
 \alias{PortrPath$get_file_paths}
 \alias{PortrPath-class-get_file_paths}
+\alias{PortrPath$files}
 \title{Get a named list of file paths}
+\arguments{
+\item{value}{unused}
+}
 \value{
 A named list of file paths
+
+a list of files belonging to the object
 }
 \description{
+This is deprecated, do not use
+
 For files specified in the shared config, get a named list of their local
 paths
 }
+\section{DEPRECATED}{
+NA
+}
+
+\seealso{
+Other PortrPath: \code{\link{PortrPath$add_profile}},
+  \code{\link{PortrPath$new}},
+  \code{\link{PortrPath$profile}},
+  \code{\link{PortrPath$root}}, \code{\link{PortrPath}}
+}
+\concept{PortrPath}
