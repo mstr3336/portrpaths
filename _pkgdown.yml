@@ -2,7 +2,11 @@ reference:
 - title: PortrPath Class
   desc: The main class implementing path portability
   contents:
-  - starts_with("PortrPath")
+  - has_concept("class")
+- title: PortrPath public methods
+  desc: The public interface for the PortrPath class
+  contents:
+  - has_concept("PortrPath")
 - title: All functions
   desc: Any functions from this package
   contents:
