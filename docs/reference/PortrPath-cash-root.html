@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set the active profile — PortrPath$profile • portrpaths</title>
+<title>Get or set the current root — PortrPath$root • portrpaths</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Set the active profile — PortrPath$profile" />
+<meta property="og:title" content="Get or set the current root — PortrPath$root" />
 
-<meta property="og:description" content="For set the current profile according to its id
-Also write the d_root to file" />
+<meta property="og:description" content="Sets the current root if assigned a value, or gets it if not" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,15 +106,14 @@ Also write the d_root to file" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set the active profile</h1>
+    <h1>Get or set the current root</h1>
     
-    <div class="hidden name"><code>PortrPath-cash-profile.Rd</code></div>
+    <div class="hidden name"><code>PortrPath-cash-root.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>For set the current profile according to its id
-Also write the d_root to file</p>
+    <p>Sets the current root if assigned a value, or gets it if not</p>
     
     </div>
 
@@ -125,20 +123,21 @@ Also write the d_root to file</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>value</th>
-      <td><p>the identifying string for the profile</p></td>
+      <td><p>the value of the root to be used. Either an absolute path
+or ".PROJECT_ROOT"</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>current profile if not being set</p>
+    <p>the current root, or nothing if setting</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
   <code><a href='PortrPath-cash-files.html'>PortrPath$get_file_paths</a></code>,
   <code><a href='PortrPath-cash-new.html'>PortrPath$new</a></code>,
-  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p></div>
+  <code><a href='PortrPath-cash-profile.html'>PortrPath$profile</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p></div>
     
 
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set the active profile — PortrPath$profile • portrpaths</title>
+<title>Get a named list of file paths — PortrPath$get_file_paths • portrpaths</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,11 @@
 
 
 
-<meta property="og:title" content="Set the active profile — PortrPath$profile" />
+<meta property="og:title" content="Get a named list of file paths — PortrPath$get_file_paths" />
 
-<meta property="og:description" content="For set the current profile according to its id
-Also write the d_root to file" />
+<meta property="og:description" content="This is deprecated, do not use
+For files specified in the shared config, get a named list of their local
+paths" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,15 +108,16 @@ Also write the d_root to file" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set the active profile</h1>
+    <h1>Get a named list of file paths</h1>
     
-    <div class="hidden name"><code>PortrPath-cash-profile.Rd</code></div>
+    <div class="hidden name"><code>PortrPath-cash-files.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>For set the current profile according to its id
-Also write the d_root to file</p>
+    <p>This is deprecated, do not use</p>
+<p>For files specified in the shared config, get a named list of their local
+paths</p>
     
     </div>
 
@@ -125,19 +127,24 @@ Also write the d_root to file</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>value</th>
-      <td><p>the identifying string for the profile</p></td>
+      <td><p>unused</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>current profile if not being set</p>
+    <p>A named list of file paths</p>
+<p>a list of files belonging to the object</p>
+    
+    <h2 class="hasAnchor" id="deprecated"><a class="anchor" href="#deprecated"></a>DEPRECATED</h2>
+
+    <p>NA</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
-  <code><a href='PortrPath-cash-files.html'>PortrPath$get_file_paths</a></code>,
   <code><a href='PortrPath-cash-new.html'>PortrPath$new</a></code>,
+  <code><a href='PortrPath-cash-profile.html'>PortrPath$profile</a></code>,
   <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p></div>
     
 
@@ -148,6 +155,8 @@ Also write the d_root to file</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#deprecated">DEPRECATED</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>

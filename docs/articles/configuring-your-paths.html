@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">portrpaths</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <h1>Using Portable Paths</h1>
                         <h4 class="author">Matthew Strasiotto</h4>
             
-            <h4 class="date">2019-01-16</h4>
+            <h4 class="date">2019-01-29</h4>
       
       
       <div class="hidden name"><code>configuring-your-paths.Rmd</code></div>
@@ -105,16 +105,14 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <p>Let’s diplay the shared config</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readLines">readLines</a></span>(shared_config)) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(ln)
 <span class="co">#&gt; [1] "parent_components:"</span>
-<span class="co">#&gt; [1] "  - inst"</span>
-<span class="co">#&gt; [1] "  - test_data"</span>
-<span class="co">#&gt; [1] "  - t1"</span>
-<span class="co">#&gt; [1] "  - data"</span>
-<span class="co">#&gt; [1] ""</span>
+<span class="co">#&gt; [1] "- inst"</span>
+<span class="co">#&gt; [1] "- test_data"</span>
+<span class="co">#&gt; [1] "- t1"</span>
+<span class="co">#&gt; [1] "- data"</span>
 <span class="co">#&gt; [1] "file_names:"</span>
 <span class="co">#&gt; [1] "  encs: cardi_encs"</span>
 <span class="co">#&gt; [1] "  diag: cardi_diags"</span>
 <span class="co">#&gt; [1] "  form: cardi_forms"</span>
-<span class="co">#&gt; [1] ""</span>
 <span class="co">#&gt; [1] "file_extensions:"</span>
 <span class="co">#&gt; [1] "  encs: txt"</span>
 <span class="co">#&gt; [1] "  diag: txt"</span>
@@ -127,7 +125,9 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <p>This is the file that designates just where to look for the root of the data-share. The rest is done by the first file we saw.</p>
 <p><em>This should never be checked into VCS.</em></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readLines">readLines</a></span>(local_config)) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(ln)
-<span class="co">#&gt; [1] "d_root: .PROJECT_ROOT"</span></code></pre></div>
+<span class="co">#&gt; [1] "d_root: .PROJECT_ROOT"</span>
+<span class="co">#&gt; [1] "profiles:"</span>
+<span class="co">#&gt; [1] "  default: .PROJECT_ROOT"</span></code></pre></div>
 <p>On looking at that, we notice you may notice that this particular example designates <code>d_root: .PROJECT_ROOT</code>.</p>
 <p><code>.PROJECT_ROOT</code> is a (the only) special case for designating this root, and will set the root to be the root of the current RStudio project and/or git repo</p>
 <p>Usually, you should specify an absolute path like - <code>/Volumes/RDS-01/PRJ-STEMI/</code> (OSX)</p>
@@ -149,7 +149,9 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <span class="co">#&gt; Parents: inst</span>
 <span class="co">#&gt; Parents: test_data</span>
 <span class="co">#&gt; Parents: t1</span>
-<span class="co">#&gt; Parents: data</span></code></pre></div>
+<span class="co">#&gt; Parents: data</span>
+<span class="co">#&gt; Profiles:</span>
+<span class="co">#&gt;     default: .PROJECT_ROOT</span></code></pre></div>
 <div id="accessing-your-paths" class="section level2">
 <h2 class="hasAnchor">
 <a href="#accessing-your-paths" class="anchor"></a>Accessing your paths</h2>
