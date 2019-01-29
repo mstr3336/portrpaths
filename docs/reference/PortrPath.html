@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a profile to the list of profiles — PortrPath$add_profile • portrpaths</title>
+<title>Main class for portrpaths — PortrPath • portrpaths</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Add a profile to the list of profiles — PortrPath$add_profile" />
+<meta property="og:title" content="Main class for portrpaths — PortrPath" />
 
-<meta property="og:description" content="Profiles allow the user to easily switch between some favourite paths" />
+<meta property="og:description" content="R6 Reference class encapsulating all portrpaths behaviour and data" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,50 +106,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add a profile to the list of profiles</h1>
+    <h1>Main class for portrpaths</h1>
     
-    <div class="hidden name"><code>PortrPath-cash-add_profile.Rd</code></div>
+    <div class="hidden name"><code>PortrPath.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Profiles allow the user to easily switch between some favourite paths</p>
+    <p>R6 Reference class encapsulating all portrpaths behaviour and data</p>
     
     </div>
 
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>name</th>
-      <td><p>the friendly name to refer to the profile</p></td>
-    </tr>
-    <tr>
-      <th>path</th>
-      <td><p>the path the profile should refer to</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>None</p>
+    <p>The current implementation will provide access to, essentially, a flat
+Directory full of datafiles.</p>
+<p>Local configuration, as well as providing an absolute root reference,
+MIGHT also allow overriding of global options (To be decided)</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-files.html'>PortrPath$get_file_paths</a></code>,
+    <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
+  <code><a href='PortrPath-cash-files.html'>PortrPath$get_file_paths</a></code>,
   <code><a href='PortrPath-cash-new.html'>PortrPath$new</a></code>,
   <code><a href='PortrPath-cash-profile.html'>PortrPath$profile</a></code>,
-  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p></div>
+  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code></p></div>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>

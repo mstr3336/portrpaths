@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a profile to the list of profiles — PortrPath$add_profile • portrpaths</title>
+<title>Get a named list of file paths — PortrPath$get_file_paths • portrpaths</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Add a profile to the list of profiles — PortrPath$add_profile" />
+<meta property="og:title" content="Get a named list of file paths — PortrPath$get_file_paths" />
 
-<meta property="og:description" content="Profiles allow the user to easily switch between some favourite paths" />
+<meta property="og:description" content="This is deprecated, do not use
+For files specified in the shared config, get a named list of their local
+paths" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,14 +108,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add a profile to the list of profiles</h1>
+    <h1>Get a named list of file paths</h1>
     
-    <div class="hidden name"><code>PortrPath-cash-add_profile.Rd</code></div>
+    <div class="hidden name"><code>PortrPath-cash-files.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Profiles allow the user to easily switch between some favourite paths</p>
+    <p>This is deprecated, do not use</p>
+<p>For files specified in the shared config, get a named list of their local
+paths</p>
     
     </div>
 
@@ -122,22 +126,23 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>name</th>
-      <td><p>the friendly name to refer to the profile</p></td>
-    </tr>
-    <tr>
-      <th>path</th>
-      <td><p>the path the profile should refer to</p></td>
+      <th>value</th>
+      <td><p>unused</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>None</p>
+    <p>A named list of file paths</p>
+<p>a list of files belonging to the object</p>
+    
+    <h2 class="hasAnchor" id="deprecated"><a class="anchor" href="#deprecated"></a>DEPRECATED</h2>
+
+    <p>NA</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-files.html'>PortrPath$get_file_paths</a></code>,
+    <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
   <code><a href='PortrPath-cash-new.html'>PortrPath$new</a></code>,
   <code><a href='PortrPath-cash-profile.html'>PortrPath$profile</a></code>,
   <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p></div>
@@ -150,6 +155,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#deprecated">DEPRECATED</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>

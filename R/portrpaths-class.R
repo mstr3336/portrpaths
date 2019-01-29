@@ -10,9 +10,9 @@
 #'     Local configuration, as well as providing an absolute root reference,
 #'     MIGHT also allow overriding of global options (To be decided)
 #'
-#'
-#' @name PortrPath-class
-#' @aliases PortrPath
+#' @concept class
+#' @family PortrPath
+#' @name PortrPath
 NULL
 
 #' @export
@@ -139,8 +139,8 @@ private = list(
 #'
 #' Initializes new PortrPath object from configuration files given as arguments
 #'
+#' @family PortrPath
 #' @name PortrPath$new
-#' @aliases PortrPath-class-new
 #' @param local_config_path The location of the configuration file that define
 #'     local configuration parameters
 #' @param shared_config_path The location of the configuration file shared
@@ -167,10 +167,13 @@ PortrPath$set(
 
 # get_file_paths ===========
 
-#' @describeIn PortrPath$files
+#' Get a named list of file paths
+#'
+#' This is deprecated, do not use
+#'
 #' @section DEPRECATED
 #' @name PortrPath$get_file_paths
-#' @rdname PortrPath$files
+#' @rdname PortrPath-cash-files
 #' @aliases PortrPath-class-get_file_paths
 #' @return A named list of file paths
 NULL
@@ -189,8 +192,7 @@ PortrPath$set(
 #'
 #' For files specified in the shared config, get a named list of their local
 #'     paths
-#' @name files
-#' @param none
+#' @family PortrPath
 #' @name PortrPath$files
 #' @param value unused
 #' @return a list of files belonging to the object
@@ -211,6 +213,7 @@ PortrPath$set(
 #' For set the current profile according to its id
 #'    Also write the d_root to file
 #'
+#' @family PortrPath
 #' @param value the identifying string for the profile
 #' @name PortrPath$profile
 #' @return current profile if not being set
@@ -234,6 +237,7 @@ PortrPath$set(
 #' Add a profile to the list of profiles
 #'
 #' Profiles allow the user to easily switch between some favourite paths
+#' @family PortrPath
 #' @param name the friendly name to refer to the profile
 #' @param path the path the profile should refer to
 #' @return None
@@ -255,6 +259,7 @@ PortrPath$set(
 #'
 #' Sets the current root if assigned a value, or gets it if not
 #'
+#' @family PortrPath
 #' @name PortrPath$root
 #' @param value the value of the root to be used. Either an absolute path
 #'     or ".PROJECT_ROOT"

@@ -14,3 +14,10 @@ None
 \description{
 Profiles allow the user to easily switch between some favourite paths
 }
+\seealso{
+Other PortrPath: \code{\link{PortrPath$get_file_paths}},
+  \code{\link{PortrPath$new}},
+  \code{\link{PortrPath$profile}},
+  \code{\link{PortrPath$root}}, \code{\link{PortrPath}}
+}
+\concept{PortrPath}
