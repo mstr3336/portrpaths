@@ -118,10 +118,16 @@
       <tr>
         <th colspan="2">
           <h2 id="section-portrpath-class" class="hasAnchor"><a href="#section-portrpath-class" class="anchor"></a>PortrPath Class</h2>
-          <p class="section-desc"><p>The main class implementing path portability</p></p>
+          <p class="section-desc"><p>The main class implementing path portability and constructors</p></p>
         </th>
       </tr>
       <tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-new.html">PortrPath$new</a></code> </p>
+        </td>
+        <td><p>Constructor for PortrPath</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="PortrPath.html">PortrPath</a></code> </p>
@@ -144,15 +150,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="PortrPath-cash-files.html">PortrPath$get_file_paths</a></code> </p>
+          <p><code><a href="PortrPath-cash-files.html">PortrPath$files</a></code> </p>
         </td>
         <td><p>Get a named list of file paths</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="PortrPath-cash-get_file_paths.html">PortrPath$get_file_paths</a></code> </p>
+        </td>
+        <td><p>Get a named list of file paths (Deprecated)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="PortrPath-cash-new.html">PortrPath$new</a></code> </p>
         </td>
-        <td><p>Inititalize A PortrPath object</p></td>
+        <td><p>Constructor for PortrPath</p></td>
       </tr><tr>
         
         <td>
@@ -175,6 +187,58 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-profile-accessors" class="hasAnchor"><a href="#section-profile-accessors" class="anchor"></a>Profile accessors</h2>
+          <p class="section-desc"><p>Methods used for getting/setting profiles</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-add_profile.html">PortrPath$add_profile</a></code> </p>
+        </td>
+        <td><p>Add a profile to the list of profiles</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-profile.html">PortrPath$profile</a></code> </p>
+        </td>
+        <td><p>Set the active profile</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-set_profile.html">PortrPath$set_profile</a></code> </p>
+        </td>
+        <td><p>Set the active profile</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-root-path-accessors" class="hasAnchor"><a href="#section-root-path-accessors" class="anchor"></a>Root/Path Accessors</h2>
+          <p class="section-desc"><p>Methods used for getting/setting path attributes such as the root, and shortcuts to paths</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-files.html">PortrPath$files</a></code> </p>
+        </td>
+        <td><p>Get a named list of file paths</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-get_file_paths.html">PortrPath$get_file_paths</a></code> </p>
+        </td>
+        <td><p>Get a named list of file paths (Deprecated)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-root.html">PortrPath$root</a></code> </p>
+        </td>
+        <td><p>Get or set the current root</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
           <p class="section-desc"><p>Any functions from this package</p></p>
         </th>
@@ -188,15 +252,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="PortrPath-cash-files.html">PortrPath$get_file_paths</a></code> </p>
+          <p><code><a href="PortrPath-cash-files.html">PortrPath$files</a></code> </p>
         </td>
         <td><p>Get a named list of file paths</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="PortrPath-cash-get_file_paths.html">PortrPath$get_file_paths</a></code> </p>
+        </td>
+        <td><p>Get a named list of file paths (Deprecated)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="PortrPath-cash-new.html">PortrPath$new</a></code> </p>
         </td>
-        <td><p>Inititalize A PortrPath object</p></td>
+        <td><p>Constructor for PortrPath</p></td>
       </tr><tr>
         
         <td>
@@ -209,6 +279,12 @@
           <p><code><a href="PortrPath-cash-root.html">PortrPath$root</a></code> </p>
         </td>
         <td><p>Get or set the current root</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PortrPath-cash-set_profile.html">PortrPath$set_profile</a></code> </p>
+        </td>
+        <td><p>Set the active profile</p></td>
       </tr><tr>
         
         <td>
@@ -231,6 +307,8 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-portrpath-class">PortrPath Class</a></li>
       <li><a href="#section-portrpath-public-methods">PortrPath public methods</a></li>
+      <li><a href="#section-profile-accessors">Profile accessors</a></li>
+      <li><a href="#section-root-path-accessors">Root/Path Accessors</a></li>
       <li><a href="#section-all-functions">All functions</a></li>
     </ul>
   </div>

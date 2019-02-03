@@ -15,6 +15,7 @@ MIGHT also allow overriding of global options (To be decided)
 }
 \seealso{
 Other PortrPath: \code{\link{PortrPath$add_profile}},
+  \code{\link{PortrPath$files}},
   \code{\link{PortrPath$get_file_paths}},
   \code{\link{PortrPath$new}},
   \code{\link{PortrPath$profile}},

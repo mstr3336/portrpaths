@@ -1,12 +1,22 @@
 reference:
 - title: PortrPath Class
-  desc: The main class implementing path portability
+  desc: The main class implementing path portability and constructors
   contents:
   - has_concept("class")
 - title: PortrPath public methods
   desc: The public interface for the PortrPath class
   contents:
   - has_concept("PortrPath")
+- title: Profile accessors
+  desc: Methods used for getting/setting profiles
+  contents:
+  - has_concept("profiles")
+- title: Root/Path Accessors
+  desc: |
+   Methods used for getting/setting path attributes such as the root, and
+   shortcuts to paths
+  contents:
+  - has_concept("path_access")
 - title: All functions
   desc: Any functions from this package
   contents:

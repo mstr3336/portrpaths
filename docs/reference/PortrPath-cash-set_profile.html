@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get a named list of file paths — PortrPath$files • portrpaths</title>
+<title>Set the active profile — PortrPath$set_profile • portrpaths</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Get a named list of file paths — PortrPath$files" />
+<meta property="og:title" content="Set the active profile — PortrPath$set_profile" />
 
-<meta property="og:description" content="For files specified in the shared config, get a named list of their local
-paths" />
+<meta property="og:description" content="Alias of path$profile &amp;lt;- name" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,53 +106,53 @@ paths" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get a named list of file paths</h1>
+    <h1>Set the active profile</h1>
     
-    <div class="hidden name"><code>PortrPath-cash-files.Rd</code></div>
+    <div class="hidden name"><code>PortrPath-cash-set_profile.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>For files specified in the shared config, get a named list of their local
-paths</p>
+    <p>Alias of <code>path$profile &lt;- name</code></p>
     
     </div>
 
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>value</th>
-      <td><p>unused</p></td>
-    </tr>
-    </table>
-    
+        
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list of files belonging to the object</p>
+    <p>current profile if not being set</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
-  <code><a href='PortrPath-cash-get_file_paths.html'>PortrPath$get_file_paths</a></code>,
-  <code><a href='PortrPath-cash-new.html'>PortrPath$new</a></code>,
-  <code><a href='PortrPath-cash-profile.html'>PortrPath$profile</a></code>,
-  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p>
-<p>Other path_access: <code><a href='PortrPath-cash-get_file_paths.html'>PortrPath$get_file_paths</a></code>,
-  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code></p></div>
+    <div class='dont-index'><p>Other profiles: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
+  <code><a href='PortrPath-cash-profile.html'>PortrPath$profile</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>paths</span> <span class='kw'>&lt;-</span> <span class='no'>PortrPath</span>$<span class='fu'>new</span>(<span class='st'>'local.yaml'</span>, <span class='st'>'shared.yaml'</span>)
+<span class='no'>paths</span>$<span class='fu'>add_profile</span>(<span class='st'>"home"</span>, <span class='st'>"/Volumes/network_share_name01"</span>)
+<span class='no'>paths</span>$<span class='fu'>add_profile</span>(<span class='st'>"work"</span>, <span class='st'>"/Volumes/network_share_name02"</span>)
+
+<span class='no'>paths</span>$<span class='no'>profile</span> <span class='kw'>&lt;-</span> <span class='st'>"home"</span>
+<span class='no'>paths</span>$<span class='no'>profile</span> <span class='kw'>&lt;-</span> <span class='st'>"work"</span>
+
+<span class='co'># Alternatively:</span>
+<span class='no'>paths</span>$<span class='fu'>set_profile</span>(<span class='st'>"home"</span>)
+<span class='no'>paths</span>$<span class='fu'>set_profile</span>(<span class='st'>"work"</span>)
+
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
