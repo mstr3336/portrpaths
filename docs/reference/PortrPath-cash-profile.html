@@ -32,8 +32,9 @@
 
 <meta property="og:title" content="Set the active profile — PortrPath$profile" />
 
-<meta property="og:description" content="For set the current profile according to its id
-Also write the d_root to file" />
+<meta property="og:description" content="Get the current profile, or assign the name of an existing profile to
+this to set that as the active profile
+Alias of path$profile &amp;lt;- name" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,8 +115,9 @@ Also write the d_root to file" />
 
     <div class="ref-description">
     
-    <p>For set the current profile according to its id
-Also write the d_root to file</p>
+    <p>Get the current profile, or assign the name of an existing profile to
+this to set that as the active profile</p>
+<p>Alias of <code>path$profile &lt;- name</code></p>
     
     </div>
 
@@ -138,9 +140,24 @@ Also write the d_root to file</p>
     <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
   <code><a href='PortrPath-cash-files.html'>PortrPath$get_file_paths</a></code>,
   <code><a href='PortrPath-cash-new.html'>PortrPath$new</a></code>,
-  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p></div>
+  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code>, <code><a href='PortrPath.html'>PortrPath</a></code></p>
+<p>Other profiles: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>paths</span> <span class='kw'>&lt;-</span> <span class='no'>PortrPath</span>$<span class='fu'>new</span>(<span class='st'>'local.yaml'</span>, <span class='st'>'shared.yaml'</span>)
+<span class='no'>paths</span>$<span class='fu'>add_profile</span>(<span class='st'>"home"</span>, <span class='st'>"/Volumes/network_share_name01"</span>)
+<span class='no'>paths</span>$<span class='fu'>add_profile</span>(<span class='st'>"work"</span>, <span class='st'>"/Volumes/network_share_name02"</span>)
+
+<span class='no'>paths</span>$<span class='no'>profile</span> <span class='kw'>&lt;-</span> <span class='st'>"home"</span>
+<span class='no'>paths</span>$<span class='no'>profile</span> <span class='kw'>&lt;-</span> <span class='st'>"work"</span>
+
+<span class='co'># Alternatively:</span>
+<span class='no'>paths</span>$<span class='fu'>set_profile</span>(<span class='st'>"home"</span>)
+<span class='no'>paths</span>$<span class='fu'>set_profile</span>(<span class='st'>"work"</span>)
+
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -150,7 +167,9 @@ Also write the d_root to file</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
