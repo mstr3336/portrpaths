@@ -2,6 +2,7 @@
 % Please edit documentation in R/portrpaths-class.R
 \name{PortrPath$profile}
 \alias{PortrPath$profile}
+\alias{PortrPath$set_profile}
 \title{Set the active profile}
 \arguments{
 \item{value}{the identifying string for the profile}
@@ -10,13 +11,33 @@
 current profile if not being set
 }
 \description{
-For set the current profile according to its id
-Also write the d_root to file
+Get the current profile, or assign the name of an existing profile to
+this to set that as the active profile
+
+Alias of \code{path$profile <- name}
+}
+\examples{
+\dontrun{
+paths <- PortrPath$new('local.yaml', 'shared.yaml')
+paths$add_profile("home", "/Volumes/network_share_name01")
+paths$add_profile("work", "/Volumes/network_share_name02")
+
+paths$profile <- "home"
+paths$profile <- "work"
+
+# Alternatively:
+paths$set_profile("home")
+paths$set_profile("work")
+
+}
 }
 \seealso{
 Other PortrPath: \code{\link{PortrPath$add_profile}},
   \code{\link{PortrPath$get_file_paths}},
   \code{\link{PortrPath$new}},
   \code{\link{PortrPath$root}}, \code{\link{PortrPath}}
+
+Other profiles: \code{\link{PortrPath$add_profile}}
 }
 \concept{PortrPath}
+\concept{profiles}
