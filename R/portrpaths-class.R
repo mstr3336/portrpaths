@@ -210,13 +210,29 @@ PortrPath$set(
 
 #' Set the active profile
 #'
-#' For set the current profile according to its id
-#'    Also write the d_root to file
+#' Get the current profile, or assign the name of an existing profile to
+#'     this to set that as the active profile
 #'
 #' @family PortrPath
+#' @family profiles
 #' @param value the identifying string for the profile
 #' @name PortrPath$profile
 #' @return current profile if not being set
+#'
+#' @examples
+#' \dontrun{
+#' paths <- PortrPath$new('local.yaml', 'shared.yaml')
+#' paths$add_profile("home", "/Volumes/network_share_name01")
+#' paths$add_profile("work", "/Volumes/network_share_name02")
+#'
+#' paths$profile <- "home"
+#' paths$profile <- "work"
+#'
+#' # Alternatively:
+#' paths$set_profile("home")
+#' paths$set_profile("work")
+#'
+#' }
 NULL
 
 PortrPath$set(
@@ -227,9 +243,23 @@ PortrPath$set(
 
     print(glue::glue("Setting profile to {value}"))
     self$root <- private$profiles[[value]]
-
+    invisible(self)
   },
   overwrite = TRUE
+)
+
+#' Set the active profile
+#'
+#' Alias of `path$profile <- name`
+#' @rdname PortrPath-cash-profile
+#' @name PortrPath$set_profile
+NULL
+PortrPath$set(
+  "public", "set_profile",
+  function(name){
+    self$profile <- name
+    invisible(self)
+  }
 )
 
 # Add Profile ===============
@@ -238,6 +268,7 @@ PortrPath$set(
 #'
 #' Profiles allow the user to easily switch between some favourite paths
 #' @family PortrPath
+#' @family profiles
 #' @param name the friendly name to refer to the profile
 #' @param path the path the profile should refer to
 #' @return None
@@ -249,9 +280,12 @@ PortrPath$set(
     private$profiles[[name]] <- path
     private$local$profiles <- private$profiles
     yaml::write_yaml(private$local, private$local_config_path)
+    invisible(self)
   },
   overwrite = TRUE
 )
+
+
 
 # Access root ========================
 
@@ -275,6 +309,7 @@ PortrPath$set(
     private$d_root <- private$handle_local_root(value)
     print(glue::glue("Setting root to {private$d_root}"))
     private$build_whole_paths()
+    invisible(self)
   },
   overwrite = TRUE
 )
