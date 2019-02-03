@@ -15,12 +15,14 @@ None
 Profiles allow the user to easily switch between some favourite paths
 }
 \seealso{
-Other PortrPath: \code{\link{PortrPath$get_file_paths}},
+Other PortrPath: \code{\link{PortrPath$files}},
+  \code{\link{PortrPath$get_file_paths}},
   \code{\link{PortrPath$new}},
   \code{\link{PortrPath$profile}},
   \code{\link{PortrPath$root}}, \code{\link{PortrPath}}
 
-Other profiles: \code{\link{PortrPath$profile}}
+Other profiles: \code{\link{PortrPath$profile}},
+  \code{\link{PortrPath$set_profile}}
 }
 \concept{PortrPath}
 \concept{profiles}

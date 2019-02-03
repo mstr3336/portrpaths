@@ -15,8 +15,13 @@ Sets the current root if assigned a value, or gets it if not
 }
 \seealso{
 Other PortrPath: \code{\link{PortrPath$add_profile}},
+  \code{\link{PortrPath$files}},
   \code{\link{PortrPath$get_file_paths}},
   \code{\link{PortrPath$new}},
   \code{\link{PortrPath$profile}}, \code{\link{PortrPath}}
+
+Other path_access: \code{\link{PortrPath$files}},
+  \code{\link{PortrPath$get_file_paths}}
 }
 \concept{PortrPath}
+\concept{path_access}

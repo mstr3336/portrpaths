@@ -2,7 +2,7 @@
 % Please edit documentation in R/portrpaths-class.R
 \name{PortrPath$new}
 \alias{PortrPath$new}
-\title{Inititalize A PortrPath object}
+\title{Constructor for PortrPath}
 \arguments{
 \item{local_config_path}{The location of the configuration file that define
 local configuration parameters}
@@ -20,8 +20,10 @@ Document the input format
 
 \seealso{
 Other PortrPath: \code{\link{PortrPath$add_profile}},
+  \code{\link{PortrPath$files}},
   \code{\link{PortrPath$get_file_paths}},
   \code{\link{PortrPath$profile}},
   \code{\link{PortrPath$root}}, \code{\link{PortrPath}}
 }
 \concept{PortrPath}
+\concept{class}
