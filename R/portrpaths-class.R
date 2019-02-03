@@ -44,6 +44,7 @@ active = list(
   root = function(value) stop("Interface Stub"),
   files = function() stop("Interface Stub")
 ),
+# PRIVATE ======================================================================
 private = list(
   # Variables =================================================================
   log = NULL,
@@ -135,11 +136,12 @@ private = list(
 
 # Initialize ===========
 
-#' Inititalize A PortrPath object
+#' Constructor for PortrPath
 #'
 #' Initializes new PortrPath object from configuration files given as arguments
 #'
 #' @family PortrPath
+#' @concept class
 #' @name PortrPath$new
 #' @param local_config_path The location of the configuration file that define
 #'     local configuration parameters
@@ -167,15 +169,18 @@ PortrPath$set(
 
 # get_file_paths ===========
 
-#' Get a named list of file paths
+
+#' Get a named list of file paths (Deprecated)
 #'
-#' This is deprecated, do not use
+#' This is deprecated, see `PortrPath$files`
 #'
-#' @section DEPRECATED
-#' @name PortrPath$get_file_paths
-#' @rdname PortrPath-cash-files
-#' @aliases PortrPath-class-get_file_paths
+#' @family PortrPath
+#' @family path_access
+#' @seealso [PortrPath$files] for the **recommended** accessor for file paths
+#' @section DEPRECATED:
+#' `PortrPath$get_file_Paths()` is the deprecated interface for this.
 #' @return A named list of file paths
+#' @name PortrPath$get_file_paths
 NULL
 
 PortrPath$set(
@@ -193,6 +198,7 @@ PortrPath$set(
 #' For files specified in the shared config, get a named list of their local
 #'     paths
 #' @family PortrPath
+#' @family path_access
 #' @name PortrPath$files
 #' @param value unused
 #' @return a list of files belonging to the object
@@ -251,7 +257,8 @@ PortrPath$set(
 #' Set the active profile
 #'
 #' Alias of `path$profile <- name`
-#' @rdname PortrPath-cash-profile
+#' @inherit PortrPath$profile
+#' @family profiles
 #' @name PortrPath$set_profile
 NULL
 PortrPath$set(
@@ -294,6 +301,7 @@ PortrPath$set(
 #' Sets the current root if assigned a value, or gets it if not
 #'
 #' @family PortrPath
+#' @family path_access
 #' @name PortrPath$root
 #' @param value the value of the root to be used. Either an absolute path
 #'     or ".PROJECT_ROOT"
