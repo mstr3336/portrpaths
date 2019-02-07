@@ -12,7 +12,8 @@ Returns the path as a string
 \seealso{
 Other Path: \code{\link{Path$..}}, \code{\link{Path$.}},
   \code{\link{Path$dir}}, \code{\link{Path$join}},
-  \code{\link{Path$new}}, \code{\link{Path$parent}},
-  \code{\link{Path}}, \code{\link{\%//\%}}
+  \code{\link{Path$name}}, \code{\link{Path$new}},
+  \code{\link{Path$parent}}, \code{\link{Path}},
+  \code{\link{\%//\%}}
 }
 \concept{Path}

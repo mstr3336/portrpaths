@@ -123,13 +123,11 @@ NULL
 #'
 #' @name Path$parent
 #' @examples
-#' {
 #' path <- Path$new("root/parent/path")
 #' print(glue::glue("path   : {path$show}",
 #'                  "parent : {path$parent$show}",
 #'                  "..     : {path$..$show}",
 #'                  .sep = "\n"))
-#' }
 #' @family Path
 #' @return a new Path object, corresponding to the parent of the calling Path
 NULL
@@ -143,7 +141,17 @@ Path$set(
   },
   overwrite = TRUE
 )
+# name =======
 
+#' Get the name of the last element in the path (Incl. extension)
+#'
+#' @name Path$name
+#' @family Path
+#' @return the string corresponding to the path's name
+#' @examples
+#' path <- Path$new("path/to/some/element")
+#' path$name
+NULL
 Path$set(
   "active", "name",
   function(x){

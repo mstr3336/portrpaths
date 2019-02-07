@@ -125,19 +125,18 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other Path: <code><a href='Path-cash-..html'>Path$.</a></code>, <code><a href='Path-cash-dir.html'>Path$dir</a></code>,
-  <code><a href='Path-cash-join.html'>Path$join</a></code>, <code><a href='Path-cash-new.html'>Path$new</a></code>,
-  <code><a href='Path-cash-parent.html'>Path$parent</a></code>, <code><a href='Path-cash-show.html'>Path$show</a></code>,
-  <code><a href='Path.html'>Path</a></code>, <code><a href='grapes-slash-slash-grapes.html'>%//%</a></code></p></div>
+  <code><a href='Path-cash-join.html'>Path$join</a></code>, <code><a href='Path-cash-name.html'>Path$name</a></code>,
+  <code><a href='Path-cash-new.html'>Path$new</a></code>, <code><a href='Path-cash-parent.html'>Path$parent</a></code>,
+  <code><a href='Path-cash-show.html'>Path$show</a></code>, <code><a href='Path.html'>Path</a></code>,
+  <code><a href='grapes-slash-slash-grapes.html'>%//%</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>{
-<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='no'>Path</span>$<span class='fu'>new</span>(<span class='st'>"root/parent/path"</span>)
+    <pre class="examples"><div class='input'><span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='no'>Path</span>$<span class='fu'>new</span>(<span class='st'>"root/parent/path"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='kw pkg'>glue</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/glue/topics/glue'>glue</a></span>(<span class='st'>"path   : {path$show}"</span>,
                  <span class='st'>"parent : {path$parent$show}"</span>,
                  <span class='st'>"..     : {path$..$show}"</span>,
-                 <span class='kw'>.sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>))
-}</div><div class='output co'>#&gt; path   : root/parent/path
+                 <span class='kw'>.sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>))</div><div class='output co'>#&gt; path   : root/parent/path
 #&gt; parent : root/parent
 #&gt; ..     : root/parent</div></pre>
   </div>

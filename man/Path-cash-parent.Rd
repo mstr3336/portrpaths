@@ -10,18 +10,17 @@ a new Path object, corresponding to the parent of the calling Path
 Get the parent of the current Path
 }
 \examples{
-{
 path <- Path$new("root/parent/path")
 print(glue::glue("path   : {path$show}",
                  "parent : {path$parent$show}",
                  "..     : {path$..$show}",
                  .sep = "\\n"))
 }
-}
 \seealso{
 Other Path: \code{\link{Path$..}}, \code{\link{Path$.}},
   \code{\link{Path$dir}}, \code{\link{Path$join}},
-  \code{\link{Path$new}}, \code{\link{Path$show}},
-  \code{\link{Path}}, \code{\link{\%//\%}}
+  \code{\link{Path$name}}, \code{\link{Path$new}},
+  \code{\link{Path$show}}, \code{\link{Path}},
+  \code{\link{\%//\%}}
 }
 \concept{Path}
