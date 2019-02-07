@@ -3,6 +3,7 @@
 #'
 #' @importFrom rlang %||%
 #' @importFrom magrittr %<>%
+#' @importFrom glue glue
 #' @export
 Path <- R6::R6Class(
   "Path",
@@ -62,8 +63,10 @@ Path$set(
   "active", "c",
   function(x){
     if (!missing(x)) stop("Dont assign to me!")
+    out <- private$get_children() %>%
+      purrr::map(Path$new)
 
-    return(private$get_children())
+    return(out)
   },
   overwrite = TRUE
 )
@@ -109,7 +112,7 @@ Path$set(
   function(){
     in_dir <- base::dir(private$path)
 
-    paths <- glue("{private$path}/{in_dir}")
+    paths <- pathr::file_path(self$show, in_dir)
     out <- list()
     out[in_dir] <- paths
     return(out)
