@@ -18,7 +18,9 @@ Imports:
     here,
     magrittr,
     glue (>= 1.3.0),
-    logging
+    logging,
+    pathr,
+    rlang
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
