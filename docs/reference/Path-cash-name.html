@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the parent of the current Path — Path$parent • portrpaths</title>
+<title>Get the name of the last element in the path (Incl. extension) — Path$name • portrpaths</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Get the parent of the current Path — Path$parent" />
+<meta property="og:title" content="Get the name of the last element in the path (Incl. extension) — Path$name" />
 
-<meta property="og:description" content="Get the parent of the current Path" />
+<meta property="og:description" content="Get the name of the last element in the path (Incl. extension)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,39 +106,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the parent of the current Path</h1>
+    <h1>Get the name of the last element in the path (Incl. extension)</h1>
     
-    <div class="hidden name"><code>Path-cash-parent.Rd</code></div>
+    <div class="hidden name"><code>Path-cash-name.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get the parent of the current Path</p>
+    <p>Get the name of the last element in the path (Incl. extension)</p>
     
     </div>
 
         
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a new Path object, corresponding to the parent of the calling Path</p>
+    <p>the string corresponding to the path's name</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other Path: <code><a href='Path-cash-...html'>Path$..</a></code>, <code><a href='Path-cash-..html'>Path$.</a></code>,
   <code><a href='Path-cash-dir.html'>Path$dir</a></code>, <code><a href='Path-cash-join.html'>Path$join</a></code>,
-  <code><a href='Path-cash-name.html'>Path$name</a></code>, <code><a href='Path-cash-new.html'>Path$new</a></code>,
+  <code><a href='Path-cash-new.html'>Path$new</a></code>, <code><a href='Path-cash-parent.html'>Path$parent</a></code>,
   <code><a href='Path-cash-show.html'>Path$show</a></code>, <code><a href='Path.html'>Path</a></code>,
   <code><a href='grapes-slash-slash-grapes.html'>%//%</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='no'>Path</span>$<span class='fu'>new</span>(<span class='st'>"root/parent/path"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='kw pkg'>glue</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/glue/topics/glue'>glue</a></span>(<span class='st'>"path   : {path$show}"</span>,
-                 <span class='st'>"parent : {path$parent$show}"</span>,
-                 <span class='st'>"..     : {path$..$show}"</span>,
-                 <span class='kw'>.sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>))</div><div class='output co'>#&gt; path   : root/parent/path
-#&gt; parent : root/parent
-#&gt; ..     : root/parent</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='no'>Path</span>$<span class='fu'>new</span>(<span class='st'>"path/to/some/element"</span>)
+<span class='no'>path</span>$<span class='no'>name</span></div><div class='output co'>#&gt; [1] "element"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
