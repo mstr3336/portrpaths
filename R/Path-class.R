@@ -17,8 +17,10 @@ Path <- R6::R6Class(
     # Active Bindings =======
     name = function(x) private$abstract(),
     show = function(x) private$abstract(),
-    c = function(x) private$abstract(),
-    parent = function(x) private$abstract()
+    dir = function(x) private$abstract(),
+    . = function(x) self$dir,
+    parent = function(x) private$abstract(),
+    .. = function(x) self$parent
   ),
   private = list(
     # Private Variables =====
@@ -60,7 +62,7 @@ Path$set(
 # Active ============
 
 Path$set(
-  "active", "c",
+  "active", "dir",
   function(x){
     if (!missing(x)) stop("Dont assign to me!")
     out <- private$get_children() %>%
