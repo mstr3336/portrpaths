@@ -2,6 +2,7 @@
 
 export("%//%")
 export("%>%")
+export(Path)
 export(PortrPath)
 importFrom(magrittr,"%<>%")
 importFrom(magrittr,"%>%")

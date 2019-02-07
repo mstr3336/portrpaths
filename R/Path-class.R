@@ -3,6 +3,7 @@
 #'
 #' @importFrom rlang %||%
 #' @importFrom magrittr %<>%
+#' @export
 Path <- R6::R6Class(
   "Path",
   public = list(
