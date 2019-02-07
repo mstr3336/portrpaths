@@ -17,6 +17,10 @@ reference:
    shortcuts to paths
   contents:
   - has_concept("path_access")
+- title: Path Class
+  desc: The public interface for the Path class
+  contents:
+  - has_concept("Path")
 - title: All functions
   desc: Any functions from this package
   contents:
