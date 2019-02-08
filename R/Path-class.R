@@ -214,6 +214,8 @@ Path$set(
 
 #' Implementation of S3 generic for as.character
 #'
+#' @export
+#' @concept S3Methods
 #' @keywords internal
 #' @param x the Path object to be coerced to character
 as.character.Path <- function(x){

@@ -140,6 +140,7 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <p>Let’s load it up, and see what it looks like</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths &lt;-<span class="st"> </span>PortrPath<span class="op">$</span><span class="kw">new</span>(<span class="dt">local_config_path =</span> local_config,
                        <span class="dt">shared_config_path =</span> shared_config)
+<span class="co">#&gt; 2019-02-08 12:41:51 INFO:PortrPath:Root in: .PROJECT_ROOT</span>
 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(paths)
 <span class="co">#&gt; Root: /Users/matt/Documents/GitHub/portrpaths</span>
@@ -157,6 +158,7 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <a href="#accessing-your-paths" class="anchor"></a>Accessing your paths</h2>
 <p>Accessing your paths is very simple</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_list &lt;-<span class="st"> </span>paths<span class="op">$</span><span class="kw">get_file_paths</span>()
+<span class="co">#&gt; 2019-02-08 12:41:51 </span><span class="al">WARNING</span><span class="co">:PortrPath:Deprecated, use $files</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(file_list)
 <span class="co">#&gt; $encs</span>
 <span class="co">#&gt; [1] "/Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_encs.txt"</span>
