@@ -12,4 +12,5 @@
 \description{
 Implementation of S3 generic for as.character
 }
+\concept{S3Methods}
 \keyword{internal}

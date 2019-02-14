@@ -78,9 +78,11 @@ NULL
 Path$set(
   "public", "join",
   function(other){
-    other %<>% as.character()
-    self$show %>%
-      pathr::file_path(other) %>%
+    other %<>% as.character() %||% ""
+    lhs <- self$show %||% ""
+
+    lhs %>%
+      file.path(other) %>%
       Path$new() %>%
     return()
   },
@@ -214,6 +216,8 @@ Path$set(
 
 #' Implementation of S3 generic for as.character
 #'
+#' @export
+#' @concept S3Methods
 #' @keywords internal
 #' @param x the Path object to be coerced to character
 as.character.Path <- function(x){
