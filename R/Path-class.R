@@ -78,9 +78,11 @@ NULL
 Path$set(
   "public", "join",
   function(other){
-    other %<>% as.character()
-    self$show %>%
-      pathr::file_path(other) %>%
+    other %<>% as.character() %||% ""
+    lhs <- self$show %||% ""
+
+    lhs %>%
+      file.path(other) %>%
       Path$new() %>%
     return()
   },
