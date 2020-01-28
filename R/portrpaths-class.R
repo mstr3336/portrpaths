@@ -107,6 +107,11 @@ public = list(
     private$local$profiles <- private$profiles
     yaml::write_yaml(private$local, private$local_config_path)
     invisible(self)
+  },
+
+  set_profile = function(name){
+    self$profile <- name
+    invisible(self)
   }
 ),
 # ACTIVE ======================================================================
@@ -232,8 +237,5 @@ private = list(
 NULL
 PortrPath$set(
   "public", "set_profile",
-  function(name){
-    self$profile <- name
-    invisible(self)
-  }
+
 )
