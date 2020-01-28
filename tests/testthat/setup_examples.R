@@ -56,6 +56,16 @@ setup_profile_local <- function(){
   return(local)
 }
 
+setup_profile_local_expected <- function() {
+  base_root <- system.file("test_data", package = "portrpaths")
+  alts <- c("t1", "t2")
+  roots <- list()
+  roots[alts] <- glue::glue("{base_root}{sep}{alts}", sep = .Platform$file.sep)
+
+  roots$default <- roots[["t1"]]
+
+  return(roots)
+}
 
 setup_profile_test <- function(local_path){
   local <- setup_profile_local()
