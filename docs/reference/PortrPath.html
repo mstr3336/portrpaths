@@ -8,11 +8,13 @@
 
 <title>Main class for portrpaths — PortrPath • portrpaths</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,10 +32,45 @@
 
 
 
-<meta property="og:title" content="Main class for portrpaths — PortrPath" />
 
-<meta property="og:description" content="R6 Reference class encapsulating all portrpaths behaviour and data" />
+<meta property="og:title" content="Main class for portrpaths — PortrPath" />
+<meta property="og:description" content="R6 Reference class encapsulating all portrpaths behaviour and data
+Given a yaml formatted local configuration file, not intended to be
+checked into VCS, the root directory for a given project's dataset may
+be specified.
+This class also provides functionality for changing &quot;profiles&quot; - Swapping
+between alternate data roots.
+For example, given a workflow that analyses some data extracted from some
+database, with the following structure- root
+  - input
+    - patient_history.csv
+    - diagnoses.csv
+  - output
+    - whatever_output.csv
+
+It may be useful/neccesary to extract this data at a reduced scope, before
+performing a full extract, or perhaps some requirement of this extraction may
+change.
+For example, there is a test subset extract, and then a full extract, having the
+following structure:- /media/mnt/SHARED_VOLUME/datasets
+  - test_extract
+    - input
+      - patient_history.csv
+      - diagnoses.csv
+    - output
+      - whatever_output.csv
+  - bulk_extract
+    - input
+      - patient_history.csv
+      - diagnoses.csv
+    - output
+      - whatever_output.csv
+
+PortrPaths allows convenient switching between
+/media/mnt/SHARED_VOLUME/datasets/bulk_extract &amp;amp;
+/media/mnt/SHARED_VOLUME/datasets/test_extract." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -63,7 +100,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">portrpaths</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -90,8 +127,10 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -112,38 +151,132 @@
     </div>
 
     <div class="ref-description">
-    
     <p>R6 Reference class encapsulating all portrpaths behaviour and data</p>
-    
+<p>Given a <code>yaml</code> formatted local configuration file, not intended to be
+checked into VCS, the root directory for a given project's dataset may
+be specified.</p>
+<p>This class also provides functionality for changing "profiles" - Swapping
+between alternate data roots.</p>
+<p>For example, given a workflow that analyses some data extracted from some
+database, with the following structure<div class="yaml"></p><pre>- root
+  - input
+    - patient_history.csv
+    - diagnoses.csv
+  - output
+    - whatever_output.csv
+</pre><p></div></p>
+<p>It may be useful/neccesary to extract this data at a reduced scope, before
+performing a full extract, or perhaps some requirement of this extraction may
+change.</p>
+<p>For example, there is a test subset extract, and then a full extract, having the
+following structure:<div class="yaml"></p><pre>- /media/mnt/SHARED_VOLUME/datasets
+  - test_extract
+    - input
+      - patient_history.csv
+      - diagnoses.csv
+    - output
+      - whatever_output.csv
+  - bulk_extract
+    - input
+      - patient_history.csv
+      - diagnoses.csv
+    - output
+      - whatever_output.csv
+</pre><p></div></p>
+<p><code>PortrPaths</code> allows convenient switching between
+<code>/media/mnt/SHARED_VOLUME/datasets/bulk_extract</code> &amp;
+<code>/media/mnt/SHARED_VOLUME/datasets/test_extract</code>.</p>
     </div>
 
-        
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The current implementation will provide access to, essentially, a flat
-Directory full of datafiles.</p>
-<p>Local configuration, as well as providing an absolute root reference,
-MIGHT also allow overriding of global options (To be decided)</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other PortrPath: <code><a href='PortrPath-cash-add_profile.html'>PortrPath$add_profile</a></code>,
-  <code><a href='PortrPath-cash-files.html'>PortrPath$files</a></code>,
-  <code><a href='PortrPath-cash-get_file_paths.html'>PortrPath$get_file_paths</a></code>,
-  <code><a href='PortrPath-cash-new.html'>PortrPath$new</a></code>,
-  <code><a href='PortrPath-cash-profile.html'>PortrPath$profile</a></code>,
-  <code><a href='PortrPath-cash-root.html'>PortrPath$root</a></code></p></div>
+    <h2 class="hasAnchor" id="todo"><a class="anchor" href="#todo"></a>TODO</h2>
+
     
+    <p>Document the input format</p>
+    <h2 class="hasAnchor" id="active-bindings"><a class="anchor" href="#active-bindings"></a>Active bindings</h2>
+
+    <p><div class="r6-active-bindings"></p><dl class='dl-horizontal'>
+<dt><code>profile</code></dt><dd><p>Set the active profile</p></dd>
+    <dt><code>root</code></dt><dd><p>Get or set the current root</p></dd>
+</dl><p></div></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    <h3>Public methods</h3>
+    <ul>
+<li><p><a href='#method-new'><code>PortrPath$new()</code></a></p></li>
+<li><p><a href='#method-print'><code>PortrPath$print()</code></a></p></li>
+<li><p><a href='#method-add_profile'><code>PortrPath$add_profile()</code></a></p></li>
+<li><p><a href='#method-set_profile'><code>PortrPath$set_profile()</code></a></p></li>
+<li><p><a href='#method-clone'><code>PortrPath$clone()</code></a></p></li>
+</ul>
+<p><hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
+    Initializes new PortrPath object from configuration files given as arguments
+<h3>Usage</h3>
+    <div class="r"><pre>PortrPath$new(local_config_path, shared_config_path = NULL)</pre></div>
+    <h3>Arguments</h3>
+    <div class="arguments">
+<dl class='dl-horizontal'>
+<dt><code>local_config_path</code></dt><dd><p>The location of the configuration file that define
+local configuration parameters</p></dd>
+    <dt><code>shared_config_path</code></dt><dd><p><strong>DEPRECATED</strong> The location of the configuration file
+shared across the project</p></dd>
+</dl>
+</div>
+    <h3>Returns</h3>
+    a new PortrPath object
+    <p><hr>
+<a id="method-print"></a></p><h3>Method <code><a href='https://www.rdocumentation.org/packages/base/topics/print'>print()</a></code></h3>
+    Display the PortrPath object
+<h3>Usage</h3>
+    <div class="r"><pre>PortrPath$print()</pre></div>
+    <p><hr>
+<a id="method-add_profile"></a></p><h3>Method <code>add_profile()</code></h3>
+    Add a named profile for quickly swapping the root.
+    Profiles allow the user to easily switch between some favourite paths
+<h3>Usage</h3>
+    <div class="r"><pre>PortrPath$add_profile(name, path)</pre></div>
+    <h3>Arguments</h3>
+    <div class="arguments">
+<dl class='dl-horizontal'>
+<dt><code>name</code></dt><dd><p>the friendly name to refer to the profile</p></dd>
+    <dt><code>path</code></dt><dd><p>the path the profile should refer to</p></dd>
+</dl>
+</div>
+    <h3>Returns</h3>
+    None
+    <p><hr>
+<a id="method-set_profile"></a></p><h3>Method <code>set_profile()</code></h3>
+    Alias of <code>path$profile &lt;- name</code>
+<h3>Usage</h3>
+    <div class="r"><pre>PortrPath$set_profile(name)</pre></div>
+    <h3>Arguments</h3>
+    <div class="arguments">
+<dl class='dl-horizontal'>
+<dt><code>name</code></dt><dd><p>the name of the profile to switch to</p></dd>
+</dl>
+</div>
+    <p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+    The objects of this class are cloneable with this method.
+<h3>Usage</h3>
+    <div class="r"><pre>PortrPath$clone(deep = FALSE)</pre></div>
+    <h3>Arguments</h3>
+    <div class="arguments">
+<dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+</dl>
+</div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+      <li><a href="#todo">TODO</a></li>
+      <li><a href="#active-bindings">Active bindings</a></li>
+      <li><a href="#methods">Methods</a></li>
+    </ul>
 
   </div>
 </div>

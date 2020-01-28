@@ -1,20 +1,55 @@
 
 #' Main class for portrpaths
 #'
-#'
+#' @description
 #' R6 Reference class encapsulating all portrpaths behaviour and data
 #'
-#'     The current implementation will provide access to, essentially, a flat
-#'     Directory full of datafiles.
+#' Given a `yaml` formatted local configuration file, not intended to be
+#' checked into VCS, the root directory for a given project's dataset may
+#' be specified.
 #'
-#'     Local configuration, as well as providing an absolute root reference,
-#'     MIGHT also allow overriding of global options (To be decided)
+#' This class also provides functionality for changing "profiles" - Swapping
+#' between alternate data roots.
 #'
-#' @concept class
-#' @family PortrPath
-#' @name PortrPath
-NULL
-
+#' For example, given a workflow that analyses some data extracted from some
+#' database, with the following structure
+#'
+#' ```yaml
+#' - root
+#'   - input
+#'     - patient_history.csv
+#'     - diagnoses.csv
+#'   - output
+#'     - whatever_output.csv
+#' ```
+#'
+#' It may be useful/neccesary to extract this data at a reduced scope, before
+#' performing a full extract, or perhaps some requirement of this extraction may
+#' change.
+#'
+#' For example, there is a test subset extract, and then a full extract, having the
+#' following structure:
+#'
+#' ```yaml
+#' - /media/mnt/SHARED_VOLUME/datasets
+#'   - test_extract
+#'     - input
+#'       - patient_history.csv
+#'       - diagnoses.csv
+#'     - output
+#'       - whatever_output.csv
+#'   - bulk_extract
+#'     - input
+#'       - patient_history.csv
+#'       - diagnoses.csv
+#'     - output
+#'       - whatever_output.csv
+#' ```
+#'
+#' `PortrPaths` allows convenient switching between
+#'  `/media/mnt/SHARED_VOLUME/datasets/bulk_extract` &
+#'  `/media/mnt/SHARED_VOLUME/datasets/test_extract`.
+#'
 #' @export
 PortrPath <-
 R6::R6Class("PortrPath",
@@ -22,22 +57,120 @@ public = list(
   # Variables =================================================================
 
   # Methods ===================================================================
+
+  #' @description
+  #'
+  #' Initializes new PortrPath object from configuration files given as arguments
+  #'
+  #' @param local_config_path The location of the configuration file that define
+  #'     local configuration parameters
+  #' @param shared_config_path __DEPRECATED__ The location of the configuration file
+  #'        shared across the project
+  #' @return a new PortrPath object
+  #' @section TODO:
+  #'     Document the input format
   initialize = function(local_config_path, shared_config_path = NULL){
-    stop("Interface Stub")
+
+    private$log <- logging::getLogger(name = "PortrPath")
+
+    if (! is.null(shared_config_path)) {
+      L$warn("Shared config is deprecated, only supply local!")
+    }
+
+    private$local_config_path <- local_config_path
+
+    private$read_config()
+
+    invisible(self)
   },
 
+  #' @description
+  #' Display the PortrPath object
   print = function(){
     print(glue::glue("Root: {private$d_root}"))
     print(glue::glue("Profiles:"))
     print(glue::glue("    {names(p)}: {p}",
                      p = private$profiles))
   },
-  add_profile = function(name, path) stop("Interface Stub")
+
+  #' @description
+  #' Add a named profile for quickly swapping the root.
+  #'
+  #' Profiles allow the user to easily switch between some favourite paths
+  #'
+  #' @family profiles
+  #' @param name the friendly name to refer to the profile
+  #' @param path the path the profile should refer to
+  #' @return None
+  add_profile = function(name, path) {
+    private$profiles[[name]] <- path
+    private$local$profiles <- private$profiles
+    yaml::write_yaml(private$local, private$local_config_path)
+    invisible(self)
+  },
+
+  #' @description
+  #'
+  #' Alias of `path$profile <- name`
+#  #'@inherit PortrPath$profile
+  #' @param name the name of the profile to switch to
+  #' @family profiles
+  set_profile = function(name){
+    self$profile <- name
+    invisible(self)
+  }
 ),
 # ACTIVE ======================================================================
 active = list(
-  profile = function(value) stop("Interface Stub"),
-  root = function(value) stop("Interface Stub")
+
+  #' @field profile Set the active profile
+  #' @description
+  #' Get the current profile, or assign the name of an existing profile to
+  #'     this to set that as the active profile
+  #'
+  #' @family profiles
+  #' @param value the identifying string for the profile
+  #' @return current profile if not being set
+  #'
+  #' @examples
+  #' \dontrun{
+  #' paths <- PortrPath$new('local.yaml', 'shared.yaml')
+  #' paths$add_profile("home", "/Volumes/network_share_name01")
+  #' paths$add_profile("work", "/Volumes/network_share_name02")
+  #'
+  #' paths$profile <- "home"
+  #' paths$profile <- "work"
+  #'
+  #' # Alternatively:
+  #' paths$set_profile("home")
+  #' paths$set_profile("work")
+  #'
+  #' }
+  profile = function(value) {
+    if (missing(value)) return(private$profiles)
+    if (! value %in% names(private$profiles)) stop(glue::glue("{value} is not a valid profile"))
+
+    print(glue::glue("Setting profile to {value}"))
+    self$root <- private$profiles[[value]]
+    invisible(self)
+  },
+
+  #' @field root Get or set the current root
+  #' @description
+  #' Sets the current root if assigned a value, or gets it if not
+  #'
+  #' @param value the value of the root to be used. Either an absolute path
+  #'     or ".PROJECT_ROOT"
+  #' @return the current root, or nothing if setting
+  root = function(value){
+    if (missing(value)) return(private$d_root)
+    private$local$d_root <- value
+    yaml::write_yaml(private$local, private$local_config_path)
+    private$d_root <- private$handle_local_root(value)
+    print(glue::glue("Setting root to {private$d_root}"))
+
+    invisible(self)
+  }
 ),
 # PRIVATE ======================================================================
 private = list(
@@ -98,152 +231,3 @@ private = list(
     return(out)
   }
 ))
-
-# Actual Implementations ======================================================
-
-# Initialize ===========
-
-#' Constructor for PortrPath
-#'
-#' Initializes new PortrPath object from configuration files given as arguments
-#'
-#' @family PortrPath
-#' @concept class
-#' @name PortrPath$new
-#' @param local_config_path The location of the configuration file that define
-#'     local configuration parameters
-#' @param shared_config_path The location of the configuration file shared
-#'     across the project
-#' @section TODO:
-#'     Document the input format
-NULL
-
-PortrPath$set(
-  "public", "initialize",
-  function(local_config_path, shared_config_path = NULL){
-
-    private$log <- logging::getLogger(name = "PortrPath")
-
-    if (! is.null(shared_config_path)) {
-      L$warn("Shared config is deprecated, only supply local!")
-    }
-
-    private$local_config_path <- local_config_path
-
-    private$read_config()
-
-    invisible(self)
-  },
-  overwrite = TRUE
-  )
-
-
-# Active Profile ========
-
-#' Set the active profile
-#'
-#' Get the current profile, or assign the name of an existing profile to
-#'     this to set that as the active profile
-#'
-#' @family PortrPath
-#' @family profiles
-#' @param value the identifying string for the profile
-#' @name PortrPath$profile
-#' @return current profile if not being set
-#'
-#' @examples
-#' \dontrun{
-#' paths <- PortrPath$new('local.yaml', 'shared.yaml')
-#' paths$add_profile("home", "/Volumes/network_share_name01")
-#' paths$add_profile("work", "/Volumes/network_share_name02")
-#'
-#' paths$profile <- "home"
-#' paths$profile <- "work"
-#'
-#' # Alternatively:
-#' paths$set_profile("home")
-#' paths$set_profile("work")
-#'
-#' }
-NULL
-
-PortrPath$set(
-  "active", "profile",
-  function(value) {
-    if (missing(value)) return(private$profiles)
-    if (! value %in% names(private$profiles)) stop(glue::glue("{value} is not a valid profile"))
-
-    print(glue::glue("Setting profile to {value}"))
-    self$root <- private$profiles[[value]]
-    invisible(self)
-  },
-  overwrite = TRUE
-)
-
-#' Set the active profile
-#'
-#' Alias of `path$profile <- name`
-#' @inherit PortrPath$profile
-#' @family profiles
-#' @name PortrPath$set_profile
-NULL
-PortrPath$set(
-  "public", "set_profile",
-  function(name){
-    self$profile <- name
-    invisible(self)
-  }
-)
-
-# Add Profile ===============
-
-#' Add a profile to the list of profiles
-#'
-#' Profiles allow the user to easily switch between some favourite paths
-#' @family PortrPath
-#' @family profiles
-#' @param name the friendly name to refer to the profile
-#' @param path the path the profile should refer to
-#' @return None
-#' @name PortrPath$add_profile
-NULL
-PortrPath$set(
-  "public", "add_profile",
-  function(name, path) {
-    private$profiles[[name]] <- path
-    private$local$profiles <- private$profiles
-    yaml::write_yaml(private$local, private$local_config_path)
-    invisible(self)
-  },
-  overwrite = TRUE
-)
-
-
-
-# Access root ========================
-
-#' Get or set the current root
-#'
-#' Sets the current root if assigned a value, or gets it if not
-#'
-#' @family PortrPath
-#' @family path_access
-#' @name PortrPath$root
-#' @param value the value of the root to be used. Either an absolute path
-#'     or ".PROJECT_ROOT"
-#' @return the current root, or nothing if setting
-NULL
-
-PortrPath$set(
-  "active", "root",
-  function(value){
-    if (missing(value)) return(private$d_root)
-    private$local$d_root <- value
-    yaml::write_yaml(private$local, private$local_config_path)
-    private$d_root <- private$handle_local_root(value)
-    print(glue::glue("Setting root to {private$d_root}"))
-
-    invisible(self)
-  },
-  overwrite = TRUE
-)
