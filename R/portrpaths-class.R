@@ -28,21 +28,16 @@ public = list(
 
   print = function(){
     print(glue::glue("Root: {private$d_root}"))
-    print(glue::glue("Name: {names(private$f_names)} ",
-                     "Path: {private$f_paths}"))
-    print(glue::glue("Parents: {private$d_parents}"))
     print(glue::glue("Profiles:"))
     print(glue::glue("    {names(p)}: {p}",
                      p = private$profiles))
   },
-  get_file_paths = function() stop("Interface Stub"),
   add_profile = function(name, path) stop("Interface Stub")
 ),
 # ACTIVE ======================================================================
 active = list(
   profile = function(value) stop("Interface Stub"),
-  root = function(value) stop("Interface Stub"),
-  files = function() stop("Interface Stub")
+  root = function(value) stop("Interface Stub")
 ),
 # PRIVATE ======================================================================
 private = list(
@@ -51,30 +46,16 @@ private = list(
   # The locations of the yaml configuration files
 
   local_config_path = NULL,
-  shared_config_path = NULL,
   local = NULL,
-  shared = NULL,
   # Local root, set by some local config file
   d_root = NULL,
-  # Information to track shared properties, on project scope
-  # Subdirectories, just the path components eg(1->n) from
-  # d_root / eg1 / eg2 /.../ egn /example.rds
-  d_parents = NULL,
   # List of filenames in final directory
-  f_names = NULL,
-  f_paths = NULL,
-  f_exts = NULL,
   profiles = NULL,
   # Methods ===================================================================
   read_config = function() {
-    private$shared <- yaml::read_yaml(private$shared_config_path)
     private$handle_local(private$local_config_path)
 
     private$d_root <- private$handle_local_root(private$local$d_root)
-
-    private$d_parents <- private$shared[["parent_components"]]
-    private$f_names   <- private$shared[["file_names"]]
-    private$f_exts    <- private$shared[["file_extensions"]]
 
     invisible(self)
   },
@@ -103,20 +84,6 @@ private = list(
     yaml::write_yaml(private$local, local_path)
   },
 
-
-  build_whole_paths = function(){
-    dir <- glue::glue_collapse(c(private$d_root, private$d_parents),
-                               sep = .Platform$file.sep)
-
-
-    # Delete any mappings in the current f_paths list
-    private$f_paths <- private$f_names
-    # Build named list from
-    private$f_paths[names(private$f_names)] <-
-      glue::glue("{dir}/{private$f_names}.{private$f_exts}")
-
-    invisible(self)
-  },
 
   # If the keyword .PROJECT_ROOT is used for the local root mapping
   # Instead set it to the local root
@@ -153,10 +120,9 @@ NULL
 
 PortrPath$set(
   "public", "initialize",
-  function(local_config_path, shared_config_path){
+  function(local_config_path){
     private$log <- logging::getLogger(name = "PortrPath")
     private$local_config_path <- local_config_path
-    private$shared_config_path <- shared_config_path
 
     private$read_config()
 
@@ -167,50 +133,6 @@ PortrPath$set(
   overwrite = TRUE
   )
 
-# get_file_paths ===========
-
-
-#' Get a named list of file paths (Deprecated)
-#'
-#' This is deprecated, see `PortrPath$files`
-#'
-#' @family PortrPath
-#' @family path_access
-#' @seealso [PortrPath$files] for the **recommended** accessor for file paths
-#' @section DEPRECATED:
-#' `PortrPath$get_file_Paths()` is the deprecated interface for this.
-#' @return A named list of file paths
-#' @name PortrPath$get_file_paths
-NULL
-
-PortrPath$set(
-  "public", "get_file_paths",
-  function(){
-    private$log$warn("Deprecated, use $files")
-    return(self$files)
-  },
-  overwrite = TRUE
-)
-
-
-#' Get a named list of file paths
-#'
-#' For files specified in the shared config, get a named list of their local
-#'     paths
-#' @family PortrPath
-#' @family path_access
-#' @name PortrPath$files
-#' @param value unused
-#' @return a list of files belonging to the object
-NULL
-PortrPath$set(
-  "active", "files",
-  function(value) {
-    if (! missing(value)) stop("Accessor only!")
-    return(private$f_paths)
-  },
-  overwrite = TRUE
-)
 
 # Active Profile ========
 
