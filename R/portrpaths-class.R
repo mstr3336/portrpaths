@@ -96,7 +96,16 @@ public = list(
 ),
 # ACTIVE ======================================================================
 active = list(
-  profile = function(value) stop("Interface Stub"),
+
+  profile = function(value) {
+    if (missing(value)) return(private$profiles)
+    if (! value %in% names(private$profiles)) stop(glue::glue("{value} is not a valid profile"))
+
+    print(glue::glue("Setting profile to {value}"))
+    self$root <- private$profiles[[value]]
+    invisible(self)
+  },
+
   root = function(value) stop("Interface Stub")
 ),
 # PRIVATE ======================================================================
@@ -193,14 +202,7 @@ NULL
 
 PortrPath$set(
   "active", "profile",
-  function(value) {
-    if (missing(value)) return(private$profiles)
-    if (! value %in% names(private$profiles)) stop(glue::glue("{value} is not a valid profile"))
-
-    print(glue::glue("Setting profile to {value}"))
-    self$root <- private$profiles[[value]]
-    invisible(self)
-  },
+  ,
   overwrite = TRUE
 )
 
