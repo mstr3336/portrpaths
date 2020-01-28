@@ -92,7 +92,13 @@ public = list(
     print(glue::glue("    {names(p)}: {p}",
                      p = private$profiles))
   },
-  add_profile = function(name, path) stop("Interface Stub")
+
+  add_profile = function(name, path) {
+    private$profiles[[name]] <- path
+    private$local$profiles <- private$profiles
+    yaml::write_yaml(private$local, private$local_config_path)
+    invisible(self)
+  }
 ),
 # ACTIVE ======================================================================
 active = list(
@@ -223,12 +229,7 @@ PortrPath$set(
 NULL
 PortrPath$set(
   "public", "add_profile",
-  function(name, path) {
-    private$profiles[[name]] <- path
-    private$local$profiles <- private$profiles
-    yaml::write_yaml(private$local, private$local_config_path)
-    invisible(self)
-  },
+  ,
   overwrite = TRUE
 )
 
