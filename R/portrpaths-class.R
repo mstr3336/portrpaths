@@ -57,17 +57,15 @@ public = list(
   # Variables =================================================================
 
   # Methods ===================================================================
-  #' Constructor for PortrPath
+
+  #' @description
   #'
   #' Initializes new PortrPath object from configuration files given as arguments
   #'
-  #' @family PortrPath
-  #' @concept class
-  #' @name PortrPath$new
   #' @param local_config_path The location of the configuration file that define
   #'     local configuration parameters
-  #' @param shared_config_path The location of the configuration file shared
-  #'     across the project
+  #' @param shared_config_path __DEPRECATED__ The location of the configuration file
+  #'        shared across the project
   #' @section TODO:
   #'     Document the input format
   initialize = function(local_config_path, shared_config_path = NULL){
