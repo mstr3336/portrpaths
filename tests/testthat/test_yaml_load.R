@@ -7,7 +7,7 @@ test_that("Can load files in correct directory", {
 
   setup_t1(local, shared)
 
-  portrpath <- PortrPath$new(local, shared)
+  portrpath <- PortrPath$new(local)
   expect_files(portrpath)
 })
 
@@ -19,7 +19,7 @@ test_that("More complex roots work", {
   shared <- file.path(dir, "shared.yaml")
   setup_t2(local, shared)
 
-  tp <- PortrPath$new(local, shared)
+  tp <- PortrPath$new(local)
 
   expect_files(tp)
 })
@@ -32,9 +32,9 @@ test_that("Can load/reload first example", {
   shared <- file.path(dir, "shared.yaml")
 
   setup_t1(local, shared)
-  p1 <- PortrPath$new(local, shared)
+  p1 <- PortrPath$new(local)
   expect_files(p1)
 
-  p2 <- PortrPath$new(local, shared)
+  p2 <- PortrPath$new(local)
   expect_files(p2)
 })

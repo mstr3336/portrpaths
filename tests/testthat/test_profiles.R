@@ -15,7 +15,7 @@ test_that("Can load file with profiles", {
 
   setup_profile_test(p$local, p$shared)
 
-  pather <- PortrPath$new(p$local, p$shared)
+  pather <- PortrPath$new(p$local)
   expect_files(pather)
   for (prof in c("default", "t1", "t2")){
     pather$profile <- prof
