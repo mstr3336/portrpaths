@@ -96,7 +96,31 @@ public = list(
 ),
 # ACTIVE ======================================================================
 active = list(
-
+  #' Set the active profile
+  #'
+  #' Get the current profile, or assign the name of an existing profile to
+  #'     this to set that as the active profile
+  #'
+  #' @family PortrPath
+  #' @family profiles
+  #' @param value the identifying string for the profile
+  #' @name PortrPath$profile
+  #' @return current profile if not being set
+  #'
+  #' @examples
+  #' \dontrun{
+  #' paths <- PortrPath$new('local.yaml', 'shared.yaml')
+  #' paths$add_profile("home", "/Volumes/network_share_name01")
+  #' paths$add_profile("work", "/Volumes/network_share_name02")
+  #'
+  #' paths$profile <- "home"
+  #' paths$profile <- "work"
+  #'
+  #' # Alternatively:
+  #' paths$set_profile("home")
+  #' paths$set_profile("work")
+  #'
+  #' }
   profile = function(value) {
     if (missing(value)) return(private$profiles)
     if (! value %in% names(private$profiles)) stop(glue::glue("{value} is not a valid profile"))
@@ -173,31 +197,7 @@ private = list(
 
 # Active Profile ========
 
-#' Set the active profile
-#'
-#' Get the current profile, or assign the name of an existing profile to
-#'     this to set that as the active profile
-#'
-#' @family PortrPath
-#' @family profiles
-#' @param value the identifying string for the profile
-#' @name PortrPath$profile
-#' @return current profile if not being set
-#'
-#' @examples
-#' \dontrun{
-#' paths <- PortrPath$new('local.yaml', 'shared.yaml')
-#' paths$add_profile("home", "/Volumes/network_share_name01")
-#' paths$add_profile("work", "/Volumes/network_share_name02")
-#'
-#' paths$profile <- "home"
-#' paths$profile <- "work"
-#'
-#' # Alternatively:
-#' paths$set_profile("home")
-#' paths$set_profile("work")
-#'
-#' }
+
 NULL
 
 PortrPath$set(
