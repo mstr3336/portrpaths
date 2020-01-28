@@ -109,12 +109,11 @@ public = list(
     invisible(self)
   },
 
-  #' Set the active profile
+  #' @description
   #'
   #' Alias of `path$profile <- name`
-  #' @inherit PortrPath$profile
+#  #'@inherit PortrPath$profile
   #' @family profiles
-  #' @name PortrPath$set_profile
   set_profile = function(name){
     self$profile <- name
     invisible(self)
