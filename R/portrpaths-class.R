@@ -161,18 +161,6 @@ private = list(
 
 # Actual Implementations ======================================================
 
-# Initialize ===========
-
-
-
-
-PortrPath$set(
-  "public", "initialize",
-  NULL
-  ,
-  overwrite = TRUE
-  )
-
 
 # Active Profile ========
 
