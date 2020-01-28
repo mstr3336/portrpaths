@@ -144,7 +144,15 @@ active = list(
     invisible(self)
   },
 
-  root = function(value) stop("Interface Stub")
+  root = function(value){
+    if (missing(value)) return(private$d_root)
+    private$local$d_root <- value
+    yaml::write_yaml(private$local, private$local_config_path)
+    private$d_root <- private$handle_local_root(value)
+    print(glue::glue("Setting root to {private$d_root}"))
+
+    invisible(self)
+  }
 ),
 # PRIVATE ======================================================================
 private = list(
@@ -240,14 +248,6 @@ NULL
 
 PortrPath$set(
   "active", "root",
-  function(value){
-    if (missing(value)) return(private$d_root)
-    private$local$d_root <- value
-    yaml::write_yaml(private$local, private$local_config_path)
-    private$d_root <- private$handle_local_root(value)
-    print(glue::glue("Setting root to {private$d_root}"))
-
-    invisible(self)
-  },
+  ,
   overwrite = TRUE
 )
