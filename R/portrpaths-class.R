@@ -113,6 +113,7 @@ public = list(
   #'
   #' Alias of `path$profile <- name`
 #  #'@inherit PortrPath$profile
+  #' @param name the name of the profile to switch to
   #' @family profiles
   set_profile = function(name){
     self$profile <- name
