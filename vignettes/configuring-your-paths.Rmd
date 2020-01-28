@@ -59,7 +59,7 @@ the data-share. The rest is done by the first file we saw.
 
 *This should never be checked into VCS.*
 ```{r}
-for (ln in readLines(local_config)) print(ln)
+for (ln in readLines(local_config)) cat(ln)
 ```
 
 On looking at that, we notice you may notice that this particular example
