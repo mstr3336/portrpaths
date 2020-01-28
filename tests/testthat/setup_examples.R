@@ -31,13 +31,6 @@ setup_t2 <- function(local_path){
 
 }
 
-expect_files <- function(portrpath){
-  paths <- portrpath$files
-  for (nm in names(paths)){
-    f <- paths[[nm]]
-    expect_true(file.exists(f), info = glue::glue("Can {nm}: {f} be found?"), label = nm)
-  }
-}
 
 setup_profile_local <- function(){
   base_root <- system.file("test_data", package = "portrpaths")
