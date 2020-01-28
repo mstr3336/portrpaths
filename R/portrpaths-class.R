@@ -22,7 +22,7 @@ public = list(
   # Variables =================================================================
 
   # Methods ===================================================================
-  initialize = function(local_config_path, shared_config_path){
+  initialize = function(local_config_path, shared_config_path = NULL){
     stop("Interface Stub")
   },
 
