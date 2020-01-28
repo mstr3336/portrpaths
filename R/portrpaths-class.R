@@ -132,8 +132,6 @@ PortrPath$set(
 
     private$read_config()
 
-    private$build_whole_paths()
-
     invisible(self)
   },
   overwrite = TRUE
@@ -244,7 +242,7 @@ PortrPath$set(
     yaml::write_yaml(private$local, private$local_config_path)
     private$d_root <- private$handle_local_root(value)
     print(glue::glue("Setting root to {private$d_root}"))
-    private$build_whole_paths()
+
     invisible(self)
   },
   overwrite = TRUE
