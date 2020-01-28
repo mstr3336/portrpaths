@@ -19,18 +19,6 @@ test_that("Can load file with profiles", {
 
   profile_sets <- list(actual = actual_profiles, expect = expect_profiles)
 
-  for (nm in names(profile_sets)) {
-    print(glue::glue(
-      "\n",
-      "{nm}",
-      "===================",
-      .sep = "\n"
-      ))
-    print(glue::glue("lengths({nm}): "))
-    print(lengths(profile_sets[[nm]]))
-    print(glue::glue("{nm}: "))
-    print(profile_sets[[nm]])
-  }
 
   expect_equivalent(!!actual_profiles  %>% .[sort(names(.))], !!expect_profiles  %>% .[sort(names(.))])
 })
