@@ -84,6 +84,8 @@ public = list(
     invisible(self)
   },
 
+  #' @description
+  #' Display the PortrPath object
   print = function(){
     print(glue::glue("Root: {private$d_root}"))
     print(glue::glue("Profiles:"))
