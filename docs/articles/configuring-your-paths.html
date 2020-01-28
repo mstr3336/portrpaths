@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">portrpaths</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -57,6 +57,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -73,7 +76,7 @@
       <h1>Using Portable Paths</h1>
                         <h4 class="author">Matthew Strasiotto</h4>
             
-            <h4 class="date">2019-02-14</h4>
+            <h4 class="date">2020-01-28</h4>
       
       
       <div class="hidden name"><code>configuring-your-paths.Rmd</code></div>
@@ -95,39 +98,18 @@
 <h1 class="hasAnchor">
 <a href="#the-configration-files" class="anchor"></a>The configration files</h1>
 <p>Let’s have a quick look at what our configuration files might look like</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">config_dir &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"test_data"</span>, <span class="st">"t1"</span>, <span class="dt">package =</span> <span class="st">"portrpaths"</span>)
-
-local_config &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(config_dir, <span class="st">"local.yaml"</span>)
-shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(config_dir, <span class="st">"shared.yaml"</span>)</code></pre></div>
-<div id="the-shared-config" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-shared-config" class="anchor"></a>The shared config</h2>
-<p>Let’s diplay the shared config</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readLines">readLines</a></span>(shared_config)) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(ln)
-<span class="co">#&gt; [1] "parent_components:"</span>
-<span class="co">#&gt; [1] "- inst"</span>
-<span class="co">#&gt; [1] "- test_data"</span>
-<span class="co">#&gt; [1] "- t1"</span>
-<span class="co">#&gt; [1] "- data"</span>
-<span class="co">#&gt; [1] "file_names:"</span>
-<span class="co">#&gt; [1] "  encs: cardi_encs"</span>
-<span class="co">#&gt; [1] "  diag: cardi_diags"</span>
-<span class="co">#&gt; [1] "  form: cardi_forms"</span>
-<span class="co">#&gt; [1] "file_extensions:"</span>
-<span class="co">#&gt; [1] "  encs: txt"</span>
-<span class="co">#&gt; [1] "  diag: txt"</span>
-<span class="co">#&gt; [1] "  form: made_up_ext"</span></code></pre></div>
-</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">local_config &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempfile</a></span>()
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/files">file.copy</a></span>(<span class="st">"./local.yaml"</span>, local_config)</code></pre></div>
 <div id="the-local-config" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-local-config" class="anchor"></a>The local config</h2>
 <p>What about the local config?</p>
 <p>This is the file that designates just where to look for the root of the data-share. The rest is done by the first file we saw.</p>
 <p><em>This should never be checked into VCS.</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readLines">readLines</a></span>(local_config)) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(ln)
-<span class="co">#&gt; [1] "d_root: .PROJECT_ROOT"</span>
-<span class="co">#&gt; [1] "profiles:"</span>
-<span class="co">#&gt; [1] "  default: .PROJECT_ROOT"</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ln <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readLines">readLines</a></span>(local_config)) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(ln, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)
+<span class="co">#&gt; d_root: .PROJECT_ROOT</span>
+<span class="co">#&gt; profiles:</span>
+<span class="co">#&gt;   default: .PROJECT_ROOT</span></code></pre></div>
 <p>On looking at that, we notice you may notice that this particular example designates <code>d_root: .PROJECT_ROOT</code>.</p>
 <p><code>.PROJECT_ROOT</code> is a (the only) special case for designating this root, and will set the root to be the root of the current RStudio project and/or git repo</p>
 <p>Usually, you should specify an absolute path like - <code>/Volumes/RDS-01/PRJ-STEMI/</code> (OSX)</p>
@@ -138,45 +120,71 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <a href="#using-this-config" class="anchor"></a>Using this config</h1>
 <p>Now it’s time to use this configuration.</p>
 <p>Let’s load it up, and see what it looks like</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths &lt;-<span class="st"> </span>PortrPath<span class="op">$</span><span class="kw">new</span>(<span class="dt">local_config_path =</span> local_config,
-                       <span class="dt">shared_config_path =</span> shared_config)
-<span class="co">#&gt; 2019-02-14 17:24:07 INFO:PortrPath:Root in: .PROJECT_ROOT</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths &lt;-<span class="st"> </span>PortrPath<span class="op">$</span><span class="kw">new</span>(<span class="dt">local_config_path =</span> local_config)
+<span class="co">#&gt; 2020-01-28 16:56:55 INFO:PortrPath:Root in: .PROJECT_ROOT</span>
 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(paths)
-<span class="co">#&gt; Root: /Users/matt/Documents/GitHub/portrpaths</span>
-<span class="co">#&gt; Name: encs Path: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_encs.txt</span>
-<span class="co">#&gt; Name: diag Path: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_diags.txt</span>
-<span class="co">#&gt; Name: form Path: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_forms.made_up_ext</span>
-<span class="co">#&gt; Parents: inst</span>
-<span class="co">#&gt; Parents: test_data</span>
-<span class="co">#&gt; Parents: t1</span>
-<span class="co">#&gt; Parents: data</span>
+<span class="co">#&gt; Root: /Users/matthew/Documents/Hobby/portrpaths</span>
 <span class="co">#&gt; Profiles:</span>
 <span class="co">#&gt;     default: .PROJECT_ROOT</span></code></pre></div>
-<div id="accessing-your-paths" class="section level2">
-<h2 class="hasAnchor">
-<a href="#accessing-your-paths" class="anchor"></a>Accessing your paths</h2>
-<p>Accessing your paths is very simple</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_list &lt;-<span class="st"> </span>paths<span class="op">$</span><span class="kw">get_file_paths</span>()
-<span class="co">#&gt; 2019-02-14 17:24:07 </span><span class="al">WARNING</span><span class="co">:PortrPath:Deprecated, use $files</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(file_list)
-<span class="co">#&gt; $encs</span>
-<span class="co">#&gt; [1] "/Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_encs.txt"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $diag</span>
-<span class="co">#&gt; [1] "/Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_diags.txt"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $form</span>
-<span class="co">#&gt; [1] "/Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_forms.made_up_ext"</span></code></pre></div>
-<p>To use a single designated path-string, just do</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">encounters &lt;-<span class="st"> </span>file_list<span class="op">$</span>encs
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(encounters)
-<span class="co">#&gt; [1] "/Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1/data/cardi_encs.txt"</span></code></pre></div>
 </div>
+<div id="getting-setting-the-root" class="section level1">
+<h1 class="hasAnchor">
+<a href="#getting-setting-the-root" class="anchor"></a>Getting / Setting The Root</h1>
+<p>Getting the value of the current root is simple</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">root &lt;-<span class="st"> </span>paths<span class="op">$</span>root
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(root)
+<span class="co">#&gt; [1] "/Users/matthew/Documents/Hobby/portrpaths"</span></code></pre></div>
+<p>Setting this value is equally simple</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths<span class="op">$</span>root &lt;-<span class="st"> "/project/STEMI"</span>
+<span class="co">#&gt; 2020-01-28 16:56:55 INFO:PortrPath:Root in: /project/STEMI</span>
+<span class="co">#&gt; Setting root to /project/STEMI</span>
+
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(paths)
+<span class="co">#&gt; Root: /project/STEMI</span>
+<span class="co">#&gt; Profiles:</span>
+<span class="co">#&gt;     default: .PROJECT_ROOT</span></code></pre></div>
+</div>
+<div id="profiles" class="section level1">
+<h1 class="hasAnchor">
+<a href="#profiles" class="anchor"></a>Profiles</h1>
+<p>Profiles allow us to quickly change between different roots</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths
+<span class="co">#&gt; Root: /project/STEMI</span>
+<span class="co">#&gt; Profiles:</span>
+<span class="co">#&gt;     default: .PROJECT_ROOT</span></code></pre></div>
+<p>Let’s add a profile for quickly swapping to a mounted data share</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths<span class="op">$</span><span class="kw">add_profile</span>(<span class="st">"hpc_root"</span>, <span class="st">"/project/STEMI"</span>)
+paths
+<span class="co">#&gt; Root: /project/STEMI</span>
+<span class="co">#&gt; Profiles:</span>
+<span class="co">#&gt;     default: .PROJECT_ROOT</span>
+<span class="co">#&gt;     hpc_root: /project/STEMI</span></code></pre></div>
+<p>Now let’s swap back over to the default profile</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths<span class="op">$</span>profile &lt;-<span class="st"> "default"</span>
+<span class="co">#&gt; Setting profile to default</span>
+<span class="co">#&gt; 2020-01-28 16:56:55 INFO:PortrPath:Root in: .PROJECT_ROOT</span>
+<span class="co">#&gt; Setting root to /Users/matthew/Documents/Hobby/portrpaths</span>
+paths
+<span class="co">#&gt; Root: /Users/matthew/Documents/Hobby/portrpaths</span>
+<span class="co">#&gt; Profiles:</span>
+<span class="co">#&gt;     default: .PROJECT_ROOT</span>
+<span class="co">#&gt;     hpc_root: /project/STEMI</span></code></pre></div>
+<p>We can swap back to the mounted share pretty easily:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths<span class="op">$</span>profile &lt;-<span class="st"> "hpc_root"</span>
+<span class="co">#&gt; Setting profile to hpc_root</span>
+<span class="co">#&gt; 2020-01-28 16:56:55 INFO:PortrPath:Root in: /project/STEMI</span>
+<span class="co">#&gt; Setting root to /project/STEMI</span>
+paths
+<span class="co">#&gt; Root: /project/STEMI</span>
+<span class="co">#&gt; Profiles:</span>
+<span class="co">#&gt;     default: .PROJECT_ROOT</span>
+<span class="co">#&gt;     hpc_root: /project/STEMI</span></code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -184,15 +192,12 @@ shared_config &lt;-<span class="st"> </span><span class="kw"><a href="https://ww
 <li><a href="#a-quick-intro">A quick intro</a></li>
       <li>
 <a href="#the-configration-files">The configration files</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#the-shared-config">The shared config</a></li>
-      <li><a href="#the-local-config">The local config</a></li>
+<li><a href="#the-local-config">The local config</a></li>
       </ul>
 </li>
-      <li>
-<a href="#using-this-config">Using this config</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#accessing-your-paths">Accessing your paths</a></li>
-      </ul>
-</li>
+      <li><a href="#using-this-config">Using this config</a></li>
+      <li><a href="#getting-setting-the-root">Getting / Setting The Root</a></li>
+      <li><a href="#profiles">Profiles</a></li>
       </ul>
 </div>
       </div>
