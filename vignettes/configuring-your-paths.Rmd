@@ -107,3 +107,24 @@ Profiles allow us to quickly change between different roots
 ```{r}
 paths
 ```
+
+Let's add a profile for quickly swapping to a mounted data share
+
+```{r}
+paths$add_profile("hpc_root", "/project/STEMI")
+paths
+```
+
+Now let's swap back over to the default profile
+
+```{r}
+paths$profile <- "default"
+paths
+```
+
+We can swap back to the mounted share pretty easily:
+
+```{r}
+paths$profile <- "hpc_root"
+paths
+```
