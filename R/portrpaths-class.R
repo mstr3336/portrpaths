@@ -122,7 +122,7 @@ public = list(
 # ACTIVE ======================================================================
 active = list(
 
-  #' @field profile
+  #' @field profile Set the active profile
   #' @description
   #' Get the current profile, or assign the name of an existing profile to
   #'     this to set that as the active profile
@@ -154,6 +154,7 @@ active = list(
     invisible(self)
   },
 
+  #' @field root Get or set the current root
   #' @description
   #' Sets the current root if assigned a value, or gets it if not
   #'
