@@ -66,6 +66,7 @@ public = list(
   #'     local configuration parameters
   #' @param shared_config_path __DEPRECATED__ The location of the configuration file
   #'        shared across the project
+  #' @return a new PortrPath object
   #' @section TODO:
   #'     Document the input format
   initialize = function(local_config_path, shared_config_path = NULL){
