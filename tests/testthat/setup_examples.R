@@ -35,7 +35,7 @@ setup_t2_local <- function(){
   return(local)
 }
 
-setup_t2_local_root <- function() {
+setup_t2_expected_root <- function() {
   return(file.path(here::here(), "inst"))
 }
 
