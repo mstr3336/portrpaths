@@ -230,13 +230,3 @@ private = list(
     return(out)
   }
 ))
-
-# Actual Implementations ======================================================
-
-
-
-NULL
-PortrPath$set(
-  "public", "set_profile",
-
-)
