@@ -5,21 +5,157 @@
 \title{Main class for portrpaths}
 \description{
 R6 Reference class encapsulating all portrpaths behaviour and data
-}
-\details{
-The current implementation will provide access to, essentially, a flat
-Directory full of datafiles.
 
-Local configuration, as well as providing an absolute root reference,
-MIGHT also allow overriding of global options (To be decided)
+Given a \code{yaml} formatted local configuration file, not intended to be
+checked into VCS, the root directory for a given project's dataset may
+be specified.
+
+This class also provides functionality for changing "profiles" - Swapping
+between alternate data roots.
+
+For example, given a workflow that analyses some data extracted from some
+database, with the following structure\if{html}{\out{<div class="yaml">}}\preformatted{- root
+  - input
+    - patient_history.csv
+    - diagnoses.csv
+  - output
+    - whatever_output.csv
+}\if{html}{\out{</div>}}
+
+It may be useful/neccesary to extract this data at a reduced scope, before
+performing a full extract, or perhaps some requirement of this extraction may
+change.
+
+For example, there is a test subset extract, and then a full extract, having the
+following structure:\if{html}{\out{<div class="yaml">}}\preformatted{- /media/mnt/SHARED_VOLUME/datasets
+  - test_extract
+    - input
+      - patient_history.csv
+      - diagnoses.csv
+    - output
+      - whatever_output.csv
+  - bulk_extract
+    - input
+      - patient_history.csv
+      - diagnoses.csv
+    - output
+      - whatever_output.csv
+}\if{html}{\out{</div>}}
+
+\code{PortrPaths} allows convenient switching between
+\verb{/media/mnt/SHARED_VOLUME/datasets/bulk_extract} &
+\verb{/media/mnt/SHARED_VOLUME/datasets/test_extract}.
 }
-\seealso{
-Other PortrPath: \code{\link{PortrPath$add_profile}},
-  \code{\link{PortrPath$files}},
-  \code{\link{PortrPath$get_file_paths}},
-  \code{\link{PortrPath$new}},
-  \code{\link{PortrPath$profile}},
-  \code{\link{PortrPath$root}}
+\section{TODO}{
+
+Document the input format
 }
-\concept{PortrPath}
-\concept{class}
+
+\concept{profiles}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{profile}}{Set the active profile}
+
+\item{\code{root}}{Get or set the current root}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{PortrPath$new()}}
+\item \href{#method-print}{\code{PortrPath$print()}}
+\item \href{#method-add_profile}{\code{PortrPath$add_profile()}}
+\item \href{#method-set_profile}{\code{PortrPath$set_profile()}}
+\item \href{#method-clone}{\code{PortrPath$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\subsection{Method \code{new()}}{
+Initializes new PortrPath object from configuration files given as arguments
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{PortrPath$new(local_config_path, shared_config_path = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{local_config_path}}{The location of the configuration file that define
+local configuration parameters}
+
+\item{\code{shared_config_path}}{\strong{DEPRECATED} The location of the configuration file
+shared across the project}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a new PortrPath object
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\subsection{Method \code{print()}}{
+Display the PortrPath object
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{PortrPath$print()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_profile"></a>}}
+\subsection{Method \code{add_profile()}}{
+Add a named profile for quickly swapping the root.
+
+Profiles allow the user to easily switch between some favourite paths
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{PortrPath$add_profile(name, path)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{the friendly name to refer to the profile}
+
+\item{\code{path}}{the path the profile should refer to}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+None
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_profile"></a>}}
+\subsection{Method \code{set_profile()}}{
+Alias of \code{path$profile <- name}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{PortrPath$set_profile(name)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{the name of the profile to switch to}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{PortrPath$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
