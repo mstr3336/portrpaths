@@ -6,20 +6,16 @@ test_that("Can load file with profiles", {
     root = system.file("test_data", package = "portrpaths"),
     sep = .Platform$file.sep)
 
-  types <- c("shared","local")
-  p <- list()
 
-  p[types] <- glue::glue("{prof_d}{sep}{types}.yaml",
+  local_path <- glue::glue("{prof_d}{sep}local.yaml",
                                 sep = .Platform$file.sep)
-  print(p)
 
-  setup_profile_test(p$local, p$shared)
+  setup_profile_test(local_path)
 
-  pather <- PortrPath$new(p$local, p$shared)
-  expect_files(pather)
-  for (prof in c("default", "t1", "t2")){
-    pather$profile <- prof
-    test_log$info(glue::glue("{prof}:","{pather$files}"))
-    expect_files(pather)
-  }
+  pather <- PortrPath$new(local_path)
+
+  expect_profiles <- setup_profile_local_expected()
+  actual_profiles <- pather$profile
+
+  expect_equivalent(!!actual_profiles  %>% .[sort(names(.))], !!expect_profiles  %>% .[sort(names(.))])
 })

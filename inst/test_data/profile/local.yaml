@@ -1,5 +1,5 @@
-d_root: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t2
+d_root: /Users/matthew/Documents/Hobby/portrpaths/inst/test_data/t1
 profiles:
-  default: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1
-  t1: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t1
-  t2: /Users/matt/Documents/GitHub/portrpaths/inst/test_data/t2
+  default: /Users/matthew/Documents/Hobby/portrpaths/inst/test_data/t1
+  t1: /Users/matthew/Documents/Hobby/portrpaths/inst/test_data/t1
+  t2: /Users/matthew/Documents/Hobby/portrpaths/inst/test_data/t2
