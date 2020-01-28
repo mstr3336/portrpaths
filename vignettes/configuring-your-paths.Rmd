@@ -46,10 +46,8 @@ library(portrpaths)
 
 Let's have a quick look at what our configuration files might look like
 ```{r}
-config_dir <- system.file("test_data", "t1", package = "portrpaths")
-
-local_config <- file.path(config_dir, "local.yaml")
-shared_config <- file.path(config_dir, "shared.yaml")
+local_config <- tempfile()
+file.copy("./local.yaml", local_config)
 ```
 
 ## The local config
