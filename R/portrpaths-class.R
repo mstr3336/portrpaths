@@ -240,14 +240,3 @@ PortrPath$set(
     invisible(self)
   }
 )
-
-# Access root ========================
-
-
-NULL
-
-PortrPath$set(
-  "active", "root",
-  ,
-  overwrite = TRUE
-)
