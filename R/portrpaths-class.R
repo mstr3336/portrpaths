@@ -58,7 +58,18 @@ public = list(
 
   # Methods ===================================================================
   initialize = function(local_config_path, shared_config_path = NULL){
-    stop("Interface Stub")
+
+    private$log <- logging::getLogger(name = "PortrPath")
+
+    if (! is.null(shared_config_path)) {
+      L$warn("Shared config is deprecated, only supply local!")
+    }
+
+    private$local_config_path <- local_config_path
+
+    private$read_config()
+
+    invisible(self)
   },
 
   print = function(){
@@ -155,20 +166,8 @@ NULL
 
 PortrPath$set(
   "public", "initialize",
-  function(local_config_path, shared_config_path = NULL){
-
-    private$log <- logging::getLogger(name = "PortrPath")
-
-    if (! is.null(shared_config_path)) {
-      L$warn("Shared config is deprecated, only supply local!")
-    }
-
-    private$local_config_path <- local_config_path
-
-    private$read_config()
-
-    invisible(self)
-  },
+  NULL
+  ,
   overwrite = TRUE
   )
 
