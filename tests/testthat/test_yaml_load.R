@@ -3,9 +3,8 @@ context("Able to find files ref'd with .PROJECT_ROOT keyword")
 test_that("Can load files in correct directory", {
   dir <- system.file("test_data", "t1", package = "portrpaths")
   local <- file.path(dir, "local.yaml")
-  shared <- file.path(dir, "shared.yaml")
 
-  setup_t1(local, shared)
+  setup_t1(local)
 
   portrpath <- PortrPath$new(local)
   expect_files(portrpath)
@@ -16,8 +15,8 @@ test_that("More complex roots work", {
 
   dir <- system.file("test_data", "t2", package = "portrpaths")
   local <- file.path(dir, "local.yaml")
-  shared <- file.path(dir, "shared.yaml")
-  setup_t2(local, shared)
+
+  setup_t2(local)
 
   tp <- PortrPath$new(local)
 
@@ -29,9 +28,8 @@ context("Subsequent loads/reloads work correctly")
 test_that("Can load/reload first example", {
   dir <- system.file("test_data", "t1", package = "portrpaths")
   local <- file.path(dir, "local.yaml")
-  shared <- file.path(dir, "shared.yaml")
 
-  setup_t1(local, shared)
+  setup_t1(local)
   p1 <- PortrPath$new(local)
   expect_files(p1)
 
