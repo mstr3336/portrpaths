@@ -96,15 +96,14 @@ public = list(
 ),
 # ACTIVE ======================================================================
 active = list(
-  #' Set the active profile
-  #'
+
+  #' @field profile
+  #' @description
   #' Get the current profile, or assign the name of an existing profile to
   #'     this to set that as the active profile
   #'
-  #' @family PortrPath
   #' @family profiles
   #' @param value the identifying string for the profile
-  #' @name PortrPath$profile
   #' @return current profile if not being set
   #'
   #' @examples
