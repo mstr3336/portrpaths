@@ -93,15 +93,15 @@ public = list(
                      p = private$profiles))
   },
 
-  #' Add a profile to the list of profiles
+  #' @description
+  #' Add a named profile for quickly swapping the root.
   #'
   #' Profiles allow the user to easily switch between some favourite paths
-  #' @family PortrPath
+  #'
   #' @family profiles
   #' @param name the friendly name to refer to the profile
   #' @param path the path the profile should refer to
   #' @return None
-  #' @name PortrPath$add_profile
   add_profile = function(name, path) {
     private$profiles[[name]] <- path
     private$local$profiles <- private$profiles
