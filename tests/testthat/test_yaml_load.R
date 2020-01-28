@@ -7,7 +7,7 @@ test_that("Can load files in correct directory", {
   setup_t1(local)
 
   portrpath <- PortrPath$new(local)
-  expect_files(portrpath)
+
 })
 
 context("Able to find files with abs roots")
@@ -20,7 +20,6 @@ test_that("More complex roots work", {
 
   tp <- PortrPath$new(local)
 
-  expect_files(tp)
 })
 
 context("Subsequent loads/reloads work correctly")
@@ -31,8 +30,8 @@ test_that("Can load/reload first example", {
 
   setup_t1(local)
   p1 <- PortrPath$new(local)
-  expect_files(p1)
+
 
   p2 <- PortrPath$new(local)
-  expect_files(p2)
+
 })
