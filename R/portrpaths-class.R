@@ -120,8 +120,14 @@ NULL
 
 PortrPath$set(
   "public", "initialize",
-  function(local_config_path){
+  function(local_config_path, shared_config_path = NULL){
+
     private$log <- logging::getLogger(name = "PortrPath")
+
+    if (! is.null(shared_config_path)) {
+      L$warn("Shared config is deprecated, only supply local!")
+    }
+
     private$local_config_path <- local_config_path
 
     private$read_config()
