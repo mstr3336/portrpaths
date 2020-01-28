@@ -143,7 +143,16 @@ active = list(
     self$root <- private$profiles[[value]]
     invisible(self)
   },
-
+  #' Get or set the current root
+  #'
+  #' Sets the current root if assigned a value, or gets it if not
+  #'
+  #' @family PortrPath
+  #' @family path_access
+  #' @name PortrPath$root
+  #' @param value the value of the root to be used. Either an absolute path
+  #'     or ".PROJECT_ROOT"
+  #' @return the current root, or nothing if setting
   root = function(value){
     if (missing(value)) return(private$d_root)
     private$local$d_root <- value
@@ -234,16 +243,7 @@ PortrPath$set(
 
 # Access root ========================
 
-#' Get or set the current root
-#'
-#' Sets the current root if assigned a value, or gets it if not
-#'
-#' @family PortrPath
-#' @family path_access
-#' @name PortrPath$root
-#' @param value the value of the root to be used. Either an absolute path
-#'     or ".PROJECT_ROOT"
-#' @return the current root, or nothing if setting
+
 NULL
 
 PortrPath$set(
