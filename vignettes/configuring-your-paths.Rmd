@@ -45,7 +45,7 @@ library(portrpaths)
 # The configration files
 
 Let's have a quick look at what our configuration files might look like
-```{r}
+```{r, results = FALSE}
 local_config <- tempfile()
 file.copy("./local.yaml", local_config)
 ```
@@ -59,7 +59,7 @@ the data-share. The rest is done by the first file we saw.
 
 *This should never be checked into VCS.*
 ```{r}
-for (ln in readLines(local_config)) cat(ln)
+for (ln in readLines(local_config)) cat(ln, sep = "\n")
 ```
 
 On looking at that, we notice you may notice that this particular example
