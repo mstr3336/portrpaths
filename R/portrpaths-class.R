@@ -1,20 +1,55 @@
 
 #' Main class for portrpaths
 #'
-#'
+#' @description
 #' R6 Reference class encapsulating all portrpaths behaviour and data
 #'
-#'     The current implementation will provide access to, essentially, a flat
-#'     Directory full of datafiles.
+#' Given a `yaml` formatted local configuration file, not intended to be
+#' checked into VCS, the root directory for a given project's dataset may
+#' be specified.
 #'
-#'     Local configuration, as well as providing an absolute root reference,
-#'     MIGHT also allow overriding of global options (To be decided)
+#' This class also provides functionality for changing "profiles" - Swapping
+#' between alternate data roots.
 #'
-#' @concept class
-#' @family PortrPath
-#' @name PortrPath
-NULL
-
+#' For example, given a workflow that analyses some data extracted from some
+#' database, with the following structure
+#'
+#' ```yaml
+#' - root
+#'   - input
+#'     - patient_history.csv
+#'     - diagnoses.csv
+#'   - output
+#'     - whatever_output.csv
+#' ```
+#'
+#' It may be useful/neccesary to extract this data at a reduced scope, before
+#' performing a full extract, or perhaps some requirement of this extraction may
+#' change.
+#'
+#' For example, there is a test subset extract, and then a full extract, having the
+#' following structure:
+#'
+#' ```yaml
+#' - /media/mnt/SHARED_VOLUME/datasets
+#'   - test_extract
+#'     - input
+#'       - patient_history.csv
+#'       - diagnoses.csv
+#'     - output
+#'       - whatever_output.csv
+#'   - bulk_extract
+#'     - input
+#'       - patient_history.csv
+#'       - diagnoses.csv
+#'     - output
+#'       - whatever_output.csv
+#' ```
+#'
+#' `PortrPaths` allows convenient switching between
+#'  `/media/mnt/SHARED_VOLUME/datasets/bulk_extract` &
+#'  `/media/mnt/SHARED_VOLUME/datasets/test_extract`.
+#'
 #' @export
 PortrPath <-
 R6::R6Class("PortrPath",
