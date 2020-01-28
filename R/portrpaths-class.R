@@ -224,18 +224,6 @@ PortrPath$set(
   }
 )
 
-# Add Profile ===============
-
-
-NULL
-PortrPath$set(
-  "public", "add_profile",
-  ,
-  overwrite = TRUE
-)
-
-
-
 # Access root ========================
 
 #' Get or set the current root
