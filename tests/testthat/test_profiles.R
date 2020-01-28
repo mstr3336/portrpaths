@@ -17,8 +17,5 @@ test_that("Can load file with profiles", {
   expect_profiles <- setup_profile_local_expected()
   actual_profiles <- pather$profile
 
-  profile_sets <- list(actual = actual_profiles, expect = expect_profiles)
-
-
   expect_equivalent(!!actual_profiles  %>% .[sort(names(.))], !!expect_profiles  %>% .[sort(names(.))])
 })
