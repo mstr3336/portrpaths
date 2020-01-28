@@ -5,34 +5,9 @@ test_log$setLevel("WARN")
 main_log$setLevel("WARN")
 
 
-setup_t1 <- function(local_path, shared_path){
+setup_t1 <- function(local_path){
   local <- setup_t1_local()
-  shared <- setup_t1_shared()
   yaml::write_yaml(local, local_path)
-  yaml::write_yaml(shared, shared_path)
-}
-
-
-setup_t1_shared <- function(){
-  shared <- list(
-    parent_components = list(
-      "inst",
-      "test_data",
-      "t1",
-      "data"
-    ),
-    file_names = list(
-      encs = "cardi_encs",
-      diag = "cardi_diags",
-      form = "cardi_forms"
-    ),
-    file_extensions = list(
-      encs = "txt",
-      diag = "txt",
-      form = "made_up_ext"
-    )
-  )
-  return(shared)
 }
 
 setup_t1_local <- function(){
@@ -50,16 +25,8 @@ setup_t2_local <- function(){
   return(local)
 }
 
-setup_t2_shared <- function(){
-  shared <- setup_t1_shared()
-  shared$parent_components <- list("test_data", "t2", "data")
-  return(shared)
-}
-
-setup_t2 <- function(local_path, shared_path){
-  shared <- setup_t2_shared()
+setup_t2 <- function(local_path){
   local <- setup_t2_local()
-  yaml::write_yaml(shared, shared_path)
   yaml::write_yaml(local, local_path)
 
 }
@@ -89,18 +56,9 @@ setup_profile_local <- function(){
   return(local)
 }
 
-setup_profile_shared <- function(){
-  out <- setup_t1_shared()
-  out$parent_components <- c('data')
-  return(out)
-}
 
-setup_profile_test <- function(local_path, shared_path){
-  shared <- setup_profile_shared()
+setup_profile_test <- function(local_path){
   local <- setup_profile_local()
 
-  #print(glue::glue("{c('shared', 'local')}: {c(shared_path, local_path)}"))
-
-  yaml::write_yaml(shared, shared_path)
   yaml::write_yaml(local, local_path)
 }
