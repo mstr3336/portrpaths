@@ -195,17 +195,6 @@ private = list(
 # Actual Implementations ======================================================
 
 
-# Active Profile ========
-
-
-NULL
-
-PortrPath$set(
-  "active", "profile",
-  ,
-  overwrite = TRUE
-)
-
 #' Set the active profile
 #'
 #' Alias of `path$profile <- name`
