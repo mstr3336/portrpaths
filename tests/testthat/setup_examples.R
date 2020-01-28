@@ -1,8 +1,8 @@
 logging::loginfo("Running setup!")
 main_log <- logging::getLogger(name = "PortrPath")
 test_log <- logging::getLogger(name = "testing")
-test_log$setLevel("DEBUG")
-main_log$setLevel("DEBUG")
+test_log$setLevel("WARN")
+main_log$setLevel("WARN")
 
 
 setup_t1 <- function(local_path, shared_path){
