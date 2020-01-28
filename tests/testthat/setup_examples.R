@@ -17,6 +17,16 @@ setup_t1_local <- function(){
   return(out)
 }
 
+setup_t1_expected_root <- function() {
+  return(here::here())
+}
+
+setup_t2 <- function(local_path){
+  local <- setup_t2_local()
+  yaml::write_yaml(local, local_path)
+
+}
+
 setup_t2_local <- function(){
   local <- setup_t1_local()
   root <- here::here()
@@ -25,10 +35,8 @@ setup_t2_local <- function(){
   return(local)
 }
 
-setup_t2 <- function(local_path){
-  local <- setup_t2_local()
-  yaml::write_yaml(local, local_path)
-
+setup_t2_local_root <- function() {
+  return(file.path(here::here(), "inst"))
 }
 
 
