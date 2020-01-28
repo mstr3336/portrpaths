@@ -46,17 +46,8 @@ library(portrpaths)
 
 Let's have a quick look at what our configuration files might look like
 ```{r}
-config_dir <- system.file("test_data", "t1", package = "portrpaths")
-
-local_config <- file.path(config_dir, "local.yaml")
-shared_config <- file.path(config_dir, "shared.yaml")
-```
-
-## The shared config
-
-Let's diplay the shared config
-```{r}
-for (ln in readLines(shared_config)) print(ln)
+local_config <- tempfile()
+file.copy("./local.yaml", local_config)
 ```
 
 ## The local config
@@ -87,23 +78,32 @@ Now it's time to use this configuration.
 
 Let's load it up, and see what it looks like
 ```{r}
-paths <- PortrPath$new(local_config_path = local_config,
-                       shared_config_path = shared_config)
+paths <- PortrPath$new(local_config_path = local_config)
 
 print(paths)
 ```
 
-## Accessing your paths
+# Getting / Setting The Root
 
-Accessing your paths is very simple
+Getting the value of the current root is simple
+
 ```{r}
-file_list <- paths$get_file_paths()
-print(file_list)
+root <- paths$root
+print(root)
 ```
 
-To use a single designated path-string, just do
+Setting this value is equally simple
+
 ```{r}
-encounters <- file_list$encs
-print(encounters)
+paths$root <- "/project/STEMI"
+
+print(paths)
 ```
 
+# Profiles
+
+Profiles allow us to quickly change between different roots
+
+```{r}
+paths
+```
